@@ -7,7 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentBottom="true"
