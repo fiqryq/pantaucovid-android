@@ -1,10 +1,8 @@
-package com.sunflower.pantaucovid19;
+package com.sunflower.pantaucovid19.base;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -23,29 +21,32 @@ import androidx.fragment.app.Fragment;
  * FrogoBox Software Industries
  * com.sunflower.pantaucovid19
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseFragment extends Fragment {
 
-    protected AppCompatActivity mActivity;
+    protected BaseActivity mActivity;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity = this;
+        mActivity = new BaseActivity();
     }
 
+
     protected void showToastShort(String message) {
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+        mActivity.showToastShort(message);
     }
 
     protected void showToastLong(String message) {
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        mActivity.showToastLong(message);
     }
 
     protected void setupFragment(Fragment fragment, int layout) {
-        getSupportFragmentManager()
+        getChildFragmentManager()
                 .beginTransaction()
                 .replace(layout, fragment)
                 .commit();
     }
+
+
 
 }
