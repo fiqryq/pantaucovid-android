@@ -2,12 +2,16 @@ package com.sunflower.pantaucovid19.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Model {
+public class ModelData {
+    @SerializedName("kodeProvinsi")
     private String kodeProvinsi;
     @SerializedName("provinsi")
     private String provinsi;
+    @SerializedName("kasusPositif")
     private String kasusPositif;
+    @SerializedName("kasusNegatif")
     private String kasusNegatif;
+    @SerializedName("kasusMeninggal")
     private String kasusMeninggal;
 
     public String getKodeProvinsi() {
