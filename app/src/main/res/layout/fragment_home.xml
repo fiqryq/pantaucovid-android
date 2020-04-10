@@ -72,12 +72,13 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/dshPositif"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20rb"
                     android:textColor="#172646"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -103,12 +104,13 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/dshSembuh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20rb"
                     android:textColor="#172646"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -134,12 +136,13 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/dshMeninggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20rb"
                     android:textColor="#172646"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

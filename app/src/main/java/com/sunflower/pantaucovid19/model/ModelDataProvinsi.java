@@ -3,7 +3,7 @@ package com.sunflower.pantaucovid19.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ModelData {
+public class ModelDataProvinsi {
     @Expose
     @SerializedName("Kode_Provi")
     private String kodeProvinsi;

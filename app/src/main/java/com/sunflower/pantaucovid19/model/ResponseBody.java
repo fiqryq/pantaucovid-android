@@ -7,13 +7,13 @@ public class ResponseBody {
 
     @Expose
     @SerializedName("attributes")
-    private ModelData modelData;
+    private ModelDataProvinsi modelDataProvinsi;
 
-    public ModelData getModelData() {
-        return modelData;
+    public ModelDataProvinsi getModelDataProvinsi() {
+        return modelDataProvinsi;
     }
 
-    public void setModelData(ModelData modelData) {
-        this.modelData = modelData;
+    public void setModelDataProvinsi(ModelDataProvinsi modelDataProvinsi) {
+        this.modelDataProvinsi = modelDataProvinsi;
     }
 }

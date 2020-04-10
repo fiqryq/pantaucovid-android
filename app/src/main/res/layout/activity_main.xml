@@ -22,5 +22,4 @@
         android:background="@drawable/navbar_rounded"
         app:cnb_menuResource="@menu/navbar"/>
 
-
 </RelativeLayout>

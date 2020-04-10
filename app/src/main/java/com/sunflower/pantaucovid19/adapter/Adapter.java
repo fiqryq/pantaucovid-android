@@ -35,10 +35,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mProvinsi.setText(mData.get(position).getModelData().getProvinsi());
-        holder.mKasusPositif.setText(mData.get(position).getModelData().getKasusPositif());
-        holder.mKasusMeninggal.setText(mData.get(position).getModelData().getKasusMeninggal());
-        holder.mKasusSembuh.setText(mData.get(position).getModelData().getKasusSembuh());
+        holder.mProvinsi.setText(mData.get(position).getModelDataProvinsi().getProvinsi());
+        holder.mKasusPositif.setText(mData.get(position).getModelDataProvinsi().getKasusPositif());
+        holder.mKasusMeninggal.setText(mData.get(position).getModelDataProvinsi().getKasusMeninggal());
+        holder.mKasusSembuh.setText(mData.get(position).getModelDataProvinsi().getKasusSembuh());
     }
 
     @Override

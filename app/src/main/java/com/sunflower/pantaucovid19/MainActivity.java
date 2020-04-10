@@ -22,6 +22,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomnav = findViewById(R.id.navbar);
+        if (savedInstanceState==null){
+            bottomnav.setItemSelected(R.id.home,true);
+            fragmentManager= getSupportFragmentManager();
+            HomeFragment homeFragment = new HomeFragment();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container,homeFragment)
+                    .commit();
+        }
+
         bottomnav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {

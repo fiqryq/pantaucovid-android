@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import com.sunflower.pantaucovid19.adapter.Adapter;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
+import com.sunflower.pantaucovid19.model.ModelDataNegara;
 import com.sunflower.pantaucovid19.model.ResponseBody;
 import com.sunflower.pantaucovid19.remote.Api;
 import com.sunflower.pantaucovid19.remote.RetrofitClient;
@@ -42,7 +42,7 @@ public class HomeFragment extends BaseFragment {
     private Adapter adapter;
     private RecyclerView provinsiRecyclerView;
     private String hari,waktusekarang;
-    private TextView waktuHariini;
+    private TextView waktuHariini , dshPositif,dshSembuh,dshMeninggal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,12 +55,16 @@ public class HomeFragment extends BaseFragment {
         provinsiRecyclerView = view.findViewById(R.id.rv_provinsi);
         provinsiRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         waktuHariini = view.findViewById(R.id.tvHariini);
+        dshPositif = view.findViewById(R.id.dshPositif);
+        dshSembuh = view.findViewById(R.id.dshSembuh);
+        dshMeninggal = view.findViewById(R.id.dshMeninggal);
         getNamaHari();
         getWaktuSekarang();
-        dataResponse();
+        dataResponseProvinsi();
+        dataResponseNegara();
     }
 
-    private void dataResponse(){
+    private void dataResponseProvinsi(){
         Call<List<ResponseBody>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataProvinsi();
         call.enqueue(new Callback<List<ResponseBody>>() {
             @Override
@@ -69,7 +73,6 @@ public class HomeFragment extends BaseFragment {
                     dataProvinsi.addAll(response.body());
                     adapter = new Adapter(getActivity(),dataProvinsi);
                     provinsiRecyclerView.setAdapter(adapter);
-                    Log.d("dataprovinsi",response.body().toString());
                 } else {
                     Toast.makeText(getContext(), "Gagal" + response.message(), Toast.LENGTH_SHORT).show();
                 }
@@ -82,6 +85,25 @@ public class HomeFragment extends BaseFragment {
         });
      }
 
+    private void dataResponseNegara(){
+        Call<ResponseBody> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()){
+                    ModelDataNegara modelDataNegara = new ModelDataNegara();
+                    dshPositif.setText(modelDataNegara.getPositif());
+                    dshSembuh.setText(modelDataNegara.getSembuh());
+                    dshMeninggal.setText(modelDataNegara.getMeninggal());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
     private void getWaktuSekarang() {
         Date date = Calendar.getInstance().getTime();
         String tanggal = (String) DateFormat.format("d", date); // 20
