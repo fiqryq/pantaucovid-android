@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.sunflower.pantaucovid19.fragment.HomeFragment;
+import com.sunflower.pantaucovid19.fragment.InfoFragment;
 
 public class MainActivity extends AppCompatActivity {
 
