@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sunflower.pantaucovid19.adapter.Adapter;
@@ -22,6 +24,8 @@ import com.sunflower.pantaucovid19.remote.Api;
 import com.sunflower.pantaucovid19.remote.RetrofitClient;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,7 +41,8 @@ public class HomeFragment extends BaseFragment {
     private ArrayList<ResponseBody> dataProvinsi = new ArrayList<>();
     private Adapter adapter;
     private RecyclerView provinsiRecyclerView;
-    private Api api;
+    private String hari,waktusekarang;
+    private TextView waktuHariini;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +54,9 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         provinsiRecyclerView = view.findViewById(R.id.rv_provinsi);
         provinsiRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        waktuHariini = view.findViewById(R.id.tvHariini);
+        getNamaHari();
+        getWaktuSekarang();
         dataResponse();
     }
 
@@ -73,4 +81,62 @@ public class HomeFragment extends BaseFragment {
             }
         });
      }
+
+    private void getWaktuSekarang() {
+        Date date = Calendar.getInstance().getTime();
+        String tanggal = (String) DateFormat.format("d", date); // 20
+        String monthNumber = (String) DateFormat.format("M", date); // 06
+        String year = (String) DateFormat.format("yyyy", date); // 2013
+
+        int month = Integer.parseInt(monthNumber);
+        String bulan = null;
+
+        if (month == 1) {
+            bulan = "Januari";
+        } else if (month == 2) {
+            bulan = "Februari";
+        } else if (month == 3) {
+            bulan = "Maret";
+        } else if (month == 4) {
+            bulan = "April";
+        } else if (month == 5) {
+            bulan = "Mei";
+        } else if (month == 6) {
+            bulan = "Juni";
+        } else if (month == 7) {
+            bulan = "Juli";
+        } else if (month == 8) {
+            bulan = "Agustus";
+        } else if (month == 9) {
+            bulan = "September";
+        } else if (month == 10) {
+            bulan = "Oktober";
+        } else if (month == 11) {
+            bulan = "November";
+        } else if (month == 12) {
+            bulan = "Desember";
+        }
+        String formatFix = hari + ", " + tanggal + " " + bulan + " " + year;
+        waktuHariini.setText(String.valueOf(formatFix));
+    }
+    private void getNamaHari() {
+        Date dateNow = Calendar.getInstance().getTime();
+        waktusekarang = (String) android.text.format.DateFormat.format("HH:mm", dateNow);
+        hari = (String) android.text.format.DateFormat.format("EEEE", dateNow);
+        if (hari.equalsIgnoreCase("sunday")) {
+            hari = "minggu";
+        } else if (hari.equalsIgnoreCase("monday")) {
+            hari = "senin";
+        } else if (hari.equalsIgnoreCase("tuesday")) {
+            hari = "selasa";
+        } else if (hari.equalsIgnoreCase("wednesday")) {
+            hari = "rabu";
+        } else if (hari.equalsIgnoreCase("thursday")) {
+            hari = "kamis";
+        } else if (hari.equalsIgnoreCase("friday")) {
+            hari = "jumat";
+        } else if (hari.equalsIgnoreCase("saturday")) {
+            hari = "sabtu";
+        }
+    }
 }

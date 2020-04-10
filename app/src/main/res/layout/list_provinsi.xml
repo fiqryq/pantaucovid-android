@@ -9,16 +9,17 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="125dp"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/content_header"
-        android:elevation="4px"
+        android:elevation="4dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/tvHariini">
 
         <TextView
             android:id="@+id/provinsi"
@@ -26,10 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="8dp"
             android:text="Provinsi"
             android:textColor="#818181"
-            android:textSize="16sp" />
+            android:textStyle="bold"
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,8 +48,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/positif" />
 
@@ -69,8 +71,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/sembuh" />
 
@@ -92,8 +94,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/meninggal" />
 

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new InfoFragment();
                         break;
                 }
+
                 if (fragment !=null){
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
