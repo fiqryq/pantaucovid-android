@@ -1,20 +1,20 @@
 package com.sunflower.pantaucovid19.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.sunflower.pantaucovid19.R;
+import com.sunflower.pantaucovid19.base.BaseFragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends BaseFragment {
 
     public InfoFragment() {
         // Required empty public constructor

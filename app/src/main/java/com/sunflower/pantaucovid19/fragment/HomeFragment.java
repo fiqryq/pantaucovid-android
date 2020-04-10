@@ -14,10 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.sunflower.pantaucovid19.Adapter;
+import com.sunflower.pantaucovid19.HomeAdapter;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
-import com.sunflower.pantaucovid19.model.ModelData;
 import com.sunflower.pantaucovid19.model.ResponseBody;
 import com.sunflower.pantaucovid19.remote.Api;
 import com.sunflower.pantaucovid19.remote.RetrofitClient;
@@ -25,12 +24,9 @@ import com.sunflower.pantaucovid19.remote.RetrofitClient;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -39,9 +35,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends BaseFragment {
 
     private ArrayList<ResponseBody> dataProvinsi = new ArrayList<>();
-    private Adapter adapter;
+    private HomeAdapter adapter;
     private RecyclerView provinsiRecyclerView;
-    private Api api;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +58,7 @@ public class HomeFragment extends BaseFragment {
             public void onResponse(Call<List<ResponseBody>> call, Response<List<ResponseBody>> response) {
                 if (response.isSuccessful()){
                     dataProvinsi.addAll(response.body());
-                    adapter = new Adapter(getActivity(),dataProvinsi);
+                    adapter = new HomeAdapter(dataProvinsi);
                     provinsiRecyclerView.setAdapter(adapter);
                     Log.d("dataprovinsi",response.body().toString());
                 } else {

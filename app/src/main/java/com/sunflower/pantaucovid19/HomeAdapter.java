@@ -1,6 +1,5 @@
 package com.sunflower.pantaucovid19;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,11 @@ import com.sunflower.pantaucovid19.model.ResponseBody;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
-    private Context mContext;
     private ArrayList<ResponseBody> mData;
 
-    public Adapter(Context mContext, ArrayList<ResponseBody> mData) {
-        this.mContext = mContext;
+    public HomeAdapter(ArrayList<ResponseBody> mData) {
         this.mData = mData;
     }
 
@@ -27,7 +24,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         view = inflater.inflate(R.layout.list_provinsi, parent, false);
         return new ViewHolder(view);
     }

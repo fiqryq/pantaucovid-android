@@ -7,15 +7,19 @@ public class ModelData {
     @Expose
     @SerializedName("Kode_Provi")
     private String kodeProvinsi;
+
     @Expose
     @SerializedName("Provinsi")
     private String provinsi;
+
     @Expose
     @SerializedName("Kasus_Posi")
     private String kasusPositif;
+
     @Expose
     @SerializedName("Kasus_Semb")
     private String kasusSembuh;
+
     @Expose
     @SerializedName("Kasus_Meni")
     private String kasusMeninggal;
