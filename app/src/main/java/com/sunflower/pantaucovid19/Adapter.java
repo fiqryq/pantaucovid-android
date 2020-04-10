@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sunflower.pantaucovid19.model.ModelData;
+import com.sunflower.pantaucovid19.model.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -17,9 +17,9 @@ import java.util.zip.Inflater;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private Context mContext;
-    private ArrayList<ModelData> mData = new ArrayList<>();
+    private ArrayList<ResponseBody> mData;
 
-    public Adapter(Context mContext, ArrayList<ModelData> mData) {
+    public Adapter(Context mContext, ArrayList<ResponseBody> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -29,15 +29,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        view = inflater.inflate(R.layout.list_provinsi,parent,false);
+        view = inflater.inflate(R.layout.list_provinsi, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mProvinsi.setText(mData.get(position).getProvinsi());
-        holder.mKasusPositif.setText(mData.get(position).getKasusPositif());
-        holder.mKasusNegatif.setText(mData.get(position).getKasusNegatif());
+        holder.mProvinsi.setText(mData.get(position).getModelData().getProvinsi());
+        holder.mKasusPositif.setText(mData.get(position).getModelData().getKasusPositif());
+        holder.mKasusNegatif.setText(mData.get(position).getModelData().getKasusNegatif());
     }
 
     @Override

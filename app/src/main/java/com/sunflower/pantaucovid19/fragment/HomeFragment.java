@@ -12,19 +12,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sunflower.pantaucovid19.Adapter;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
-import com.sunflower.pantaucovid19.model.Model;
 import com.sunflower.pantaucovid19.model.ModelData;
+import com.sunflower.pantaucovid19.model.ResponseBody;
 import com.sunflower.pantaucovid19.remote.Api;
+import com.sunflower.pantaucovid19.remote.RetrofitClient;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,11 +36,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
-    private ArrayList<ModelData> dataProvinsi = new ArrayList<>();
+    private ArrayList<ResponseBody> dataProvinsi = new ArrayList<>();
     private Adapter adapter;
     private RecyclerView provinsiRecyclerView;
+    private Api api;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,25 +57,22 @@ public class HomeFragment extends Fragment {
     }
 
     private void dataResponse(){
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.kawalcorona.com/indonesia/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-        Call<List<ModelData>> call = api.getDataProvinsi();
-        call.enqueue(new Callback<List<ModelData>>() {
+        Call<List<ResponseBody>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataProvinsi();
+        call.enqueue(new Callback<List<ResponseBody>>() {
             @Override
-            public void onResponse(Call<List<ModelData>> call, Response<List<ModelData>> response) {
-                dataProvinsi = new ArrayList<>(response.body());
-                adapter = new Adapter(getActivity(),dataProvinsi);
-                provinsiRecyclerView.setAdapter(adapter);
-                Log.d("dataprovinsi",dataProvinsi.toString());
+            public void onResponse(Call<List<ResponseBody>> call, Response<List<ResponseBody>> response) {
+                if (response.isSuccessful()){
+                    dataProvinsi.addAll(response.body());
+                    adapter = new Adapter(getActivity(),dataProvinsi);
+                    provinsiRecyclerView.setAdapter(adapter);
+                    Log.d("dataprovinsi",response.body().toString());
+                } else {
+                    Toast.makeText(getContext(), "Gagal" + response.message(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<List<ModelData>> call, Throwable t) {
+            public void onFailure(Call<List<ResponseBody>> call, Throwable t) {
 
             }
         });
