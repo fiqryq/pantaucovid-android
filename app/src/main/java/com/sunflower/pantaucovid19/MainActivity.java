@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container,homeFragment)
                     .commit();
         }
-
         bottomnav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {

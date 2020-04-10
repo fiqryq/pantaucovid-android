@@ -12,6 +12,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class HomeFragment extends BaseFragment {
     private RecyclerView provinsiRecyclerView;
     private String hari,waktusekarang;
     private TextView waktuHariini , dshPositif,dshSembuh,dshMeninggal;
+    private ProgressBar mProgressbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class HomeFragment extends BaseFragment {
         dshPositif = view.findViewById(R.id.dshPositif);
         dshSembuh = view.findViewById(R.id.dshSembuh);
         dshMeninggal = view.findViewById(R.id.dshMeninggal);
+        mProgressbar = view.findViewById(R.id.progressBar);
+        mProgressbar.setVisibility(View.VISIBLE);
         getNamaHari();
         getWaktuSekarang();
         dataResponseProvinsi();
@@ -70,6 +74,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onResponse(Call<List<ResponseBody>> call, Response<List<ResponseBody>> response) {
                 if (response.isSuccessful()){
+                    mProgressbar.setVisibility(View.GONE);
                     dataProvinsi.addAll(response.body());
                     adapter = new Adapter(getActivity(),dataProvinsi);
                     provinsiRecyclerView.setAdapter(adapter);
