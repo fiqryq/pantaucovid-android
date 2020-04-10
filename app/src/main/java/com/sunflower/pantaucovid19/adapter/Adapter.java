@@ -1,4 +1,4 @@
-package com.sunflower.pantaucovid19;
+package com.sunflower.pantaucovid19.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.model.ResponseBody;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.mProvinsi.setText(mData.get(position).getModelData().getProvinsi());
+        holder.mProvinsi.setText(mData.get(position).getModelData().getProvinsi());
         holder.mKasusPositif.setText(mData.get(position).getModelData().getKasusPositif());
         holder.mKasusMeninggal.setText(mData.get(position).getModelData().getKasusMeninggal());
         holder.mKasusSembuh.setText(mData.get(position).getModelData().getKasusSembuh());
@@ -53,6 +54,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mProvinsi =itemView.findViewById(R.id.provinsi);
             mKasusPositif = itemView.findViewById(R.id.kasusPositif);
             mKasusMeninggal = itemView.findViewById(R.id.kasusMeninggal);
             mKasusSembuh = itemView.findViewById(R.id.kasusSembuh);
