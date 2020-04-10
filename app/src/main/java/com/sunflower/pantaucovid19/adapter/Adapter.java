@@ -16,11 +16,9 @@ import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    private Context mContext;
     private ArrayList<ResponseBody> mData;
 
-    public Adapter(Context mContext, ArrayList<ResponseBody> mData) {
-        this.mContext = mContext;
+    public Adapter(ArrayList<ResponseBody> mData) {
         this.mData = mData;
     }
 
@@ -28,7 +26,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         view = inflater.inflate(R.layout.list_provinsi, parent, false);
         return new ViewHolder(view);
     }
@@ -54,7 +52,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mProvinsi =itemView.findViewById(R.id.provinsi);
+            mProvinsi = itemView.findViewById(R.id.provinsi);
             mKasusPositif = itemView.findViewById(R.id.kasusPositif);
             mKasusMeninggal = itemView.findViewById(R.id.kasusMeninggal);
             mKasusSembuh = itemView.findViewById(R.id.kasusSembuh);

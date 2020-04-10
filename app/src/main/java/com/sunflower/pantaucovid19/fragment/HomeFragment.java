@@ -1,15 +1,7 @@
 package com.sunflower.pantaucovid19.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,27 +9,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.reflect.TypeToken;
-import com.sunflower.pantaucovid19.adapter.Adapter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.sunflower.pantaucovid19.R;
+import com.sunflower.pantaucovid19.adapter.Adapter;
 import com.sunflower.pantaucovid19.base.BaseFragment;
 import com.sunflower.pantaucovid19.model.ModelDataNegara;
 import com.sunflower.pantaucovid19.model.ResponseBody;
 import com.sunflower.pantaucovid19.remote.Api;
 import com.sunflower.pantaucovid19.remote.RetrofitClient;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.readystatesoftware.chuck.internal.support.JsonConvertor.gson;
 
 
 /**
@@ -48,8 +41,8 @@ public class HomeFragment extends BaseFragment {
     private ArrayList<ResponseBody> dataProvinsi = new ArrayList<>();
     private Adapter adapter;
     private RecyclerView provinsiRecyclerView;
-    private String hari,waktusekarang;
-    private TextView waktuHariini , dshPositif,dshSembuh,dshMeninggal;
+    private String hari, waktusekarang;
+    private TextView waktuHariini, dshPositif, dshSembuh, dshMeninggal;
     private ProgressBar mProgressbar;
 
     @Override
@@ -74,15 +67,15 @@ public class HomeFragment extends BaseFragment {
         dataResponseNegara();
     }
 
-    private void dataResponseProvinsi(){
+    private void dataResponseProvinsi() {
         Call<List<ResponseBody>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataProvinsi();
         call.enqueue(new Callback<List<ResponseBody>>() {
             @Override
             public void onResponse(Call<List<ResponseBody>> call, Response<List<ResponseBody>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mProgressbar.setVisibility(View.GONE);
                     dataProvinsi.addAll(response.body());
-                    adapter = new Adapter(getActivity(),dataProvinsi);
+                    adapter = new Adapter(dataProvinsi);
                     provinsiRecyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(getContext(), "Gagal" + response.message(), Toast.LENGTH_SHORT).show();
@@ -94,7 +87,7 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
-     }
+    }
 
     private void dataResponseNegara() {
         Call<ModelDataNegara> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
@@ -149,6 +142,7 @@ public class HomeFragment extends BaseFragment {
         String formatFix = hari + ", " + tanggal + " " + bulan + " " + year;
         waktuHariini.setText(String.valueOf(formatFix));
     }
+
     private void getNamaHari() {
         Date dateNow = Calendar.getInstance().getTime();
         waktusekarang = (String) android.text.format.DateFormat.format("HH:mm", dateNow);

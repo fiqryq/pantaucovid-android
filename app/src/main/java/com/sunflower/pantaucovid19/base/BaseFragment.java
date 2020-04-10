@@ -28,7 +28,7 @@ public class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity = new BaseActivity();
+        mActivity = (BaseActivity) getActivity();
     }
 
 
@@ -46,7 +46,6 @@ public class BaseFragment extends Fragment {
                 .replace(layout, fragment)
                 .commit();
     }
-
 
 
 }

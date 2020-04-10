@@ -34,11 +34,11 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void showToastShort(String message) {
-        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     protected void showToastLong(String message) {
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     protected void setupFragment(Fragment fragment, int layout) {
