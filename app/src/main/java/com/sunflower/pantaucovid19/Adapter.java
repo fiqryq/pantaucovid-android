@@ -34,9 +34,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mProvinsi.setText(mData.get(position).getModelData().getProvinsi());
+//        holder.mProvinsi.setText(mData.get(position).getModelData().getProvinsi());
         holder.mKasusPositif.setText(mData.get(position).getModelData().getKasusPositif());
-        holder.mKasusNegatif.setText(mData.get(position).getModelData().getKasusSembuh());
+        holder.mKasusMeninggal.setText(mData.get(position).getModelData().getKasusMeninggal());
+        holder.mKasusSembuh.setText(mData.get(position).getModelData().getKasusSembuh());
     }
 
     @Override
@@ -47,13 +48,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mProvinsi;
         private TextView mKasusPositif;
-        private TextView mKasusNegatif;
+        private TextView mKasusMeninggal;
+        private TextView mKasusSembuh;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mProvinsi = itemView.findViewById(R.id.provinsi);
             mKasusPositif = itemView.findViewById(R.id.kasusPositif);
-            mKasusNegatif = itemView.findViewById(R.id.kasusSembuh);
+            mKasusMeninggal = itemView.findViewById(R.id.kasusMeninggal);
+            mKasusSembuh = itemView.findViewById(R.id.kasusSembuh);
         }
     }
 }
