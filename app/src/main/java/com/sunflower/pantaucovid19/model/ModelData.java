@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class ModelData {
     @Expose
-    @SerializedName("kodeProvinsi")
+    @SerializedName("Kode_Provi")
     private String kodeProvinsi;
     @Expose
-    @SerializedName("provinsi")
+    @SerializedName("Provinsi")
     private String provinsi;
     @Expose
-    @SerializedName("kasusPositif")
+    @SerializedName("Kasus_Posi")
     private String kasusPositif;
     @Expose
-    @SerializedName("kasusNegatif")
-    private String kasusNegatif;
+    @SerializedName("Kasus_Semb")
+    private String kasusSembuh;
     @Expose
-    @SerializedName("kasusMeninggal")
+    @SerializedName("Kasus_Meni")
     private String kasusMeninggal;
 
     public String getKodeProvinsi() {
@@ -44,12 +44,12 @@ public class ModelData {
         this.kasusPositif = kasusPositif;
     }
 
-    public String getKasusNegatif() {
-        return kasusNegatif;
+    public String getKasusSembuh() {
+        return kasusSembuh;
     }
 
-    public void setKasusNegatif(String kasusNegatif) {
-        this.kasusNegatif = kasusNegatif;
+    public void setKasusSembuh(String kasusSembuh) {
+        this.kasusSembuh = kasusSembuh;
     }
 
     public String getKasusMeninggal() {
