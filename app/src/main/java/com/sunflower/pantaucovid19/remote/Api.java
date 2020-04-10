@@ -1,5 +1,6 @@
 package com.sunflower.pantaucovid19.remote;
 
+import com.sunflower.pantaucovid19.model.ModelDataNegara;
 import com.sunflower.pantaucovid19.model.ResponseBody;
 
 import java.util.List;
@@ -11,6 +12,6 @@ public interface Api {
     @GET("indonesia/provinsi/?fbclid=IwAR2et4U7LTIEnKnPe0uBWfjn6lTmyyu-EEssrIBO4bLxx1W_lJmUtBnASzU")
     Call<List<ResponseBody>> getDataProvinsi();
 
-    @GET("indonesia/")
-    Call<ResponseBody> getDataNegara();
+    @GET("indonesia")
+    Call<ModelDataNegara> getDataNegara();
 }

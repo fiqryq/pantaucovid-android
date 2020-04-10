@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.reflect.TypeToken;
 import com.sunflower.pantaucovid19.adapter.Adapter;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
@@ -24,14 +26,18 @@ import com.sunflower.pantaucovid19.model.ResponseBody;
 import com.sunflower.pantaucovid19.remote.Api;
 import com.sunflower.pantaucovid19.remote.RetrofitClient;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.readystatesoftware.chuck.internal.support.JsonConvertor.gson;
 
 
 /**
@@ -90,25 +96,22 @@ public class HomeFragment extends BaseFragment {
         });
      }
 
-    private void dataResponseNegara(){
-        Call<ResponseBody> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
-        call.enqueue(new Callback<ResponseBody>() {
+    private void dataResponseNegara() {
+        Call<ModelDataNegara> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
+        call.enqueue(new Callback<ModelDataNegara>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()){
-                    ModelDataNegara modelDataNegara = new ModelDataNegara();
-                    dshPositif.setText(modelDataNegara.getPositif());
-                    dshSembuh.setText(modelDataNegara.getSembuh());
-                    dshMeninggal.setText(modelDataNegara.getMeninggal());
-                }
+            public void onResponse(Call<ModelDataNegara> call, Response<ModelDataNegara> response) {
+                response.body().getMeninggal();
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<ModelDataNegara> call, Throwable t) {
 
             }
         });
     }
+
+
     private void getWaktuSekarang() {
         Date date = Calendar.getInstance().getTime();
         String tanggal = (String) DateFormat.format("d", date); // 20

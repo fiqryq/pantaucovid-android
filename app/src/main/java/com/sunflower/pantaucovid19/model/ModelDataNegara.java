@@ -21,31 +21,15 @@ public class ModelDataNegara {
         return nama;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
     public String getPositif() {
         return positif;
-    }
-
-    public void setPositif(String positif) {
-        this.positif = positif;
     }
 
     public String getSembuh() {
         return sembuh;
     }
 
-    public void setSembuh(String sembuh) {
-        this.sembuh = sembuh;
-    }
-
     public String getMeninggal() {
         return meninggal;
-    }
-
-    public void setMeninggal(String meninggal) {
-        this.meninggal = meninggal;
     }
 }
