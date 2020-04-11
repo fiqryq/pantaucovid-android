@@ -9,13 +9,13 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/content_header"
-        android:elevation="4dp"
+        android:elevation="2dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +48,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/positif" />
 
@@ -71,8 +71,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/sembuh" />
 
@@ -94,8 +94,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/meninggal" />
 

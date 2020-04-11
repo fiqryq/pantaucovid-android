@@ -2,6 +2,7 @@ package com.sunflower.pantaucovid19.fragment;
 
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -90,20 +92,21 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void dataResponseNegara() {
-        Call<ModelDataNegara> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
-        call.enqueue(new Callback<ModelDataNegara>() {
+        Api api = RetrofitClient.getApiClient(getContext()).create(Api.class);
+        Call<ModelDataNegara> result = api.getDataNegara();
+        result.enqueue(new Callback<ModelDataNegara>() {
             @Override
             public void onResponse(Call<ModelDataNegara> call, Response<ModelDataNegara> response) {
-                response.body().getMeninggal();
+                showToastLong("Berhasil");
             }
 
             @Override
             public void onFailure(Call<ModelDataNegara> call, Throwable t) {
-
+                showToastLong("gagal");
+                Log.d("gagalresponse",t.getMessage());
             }
         });
     }
-
 
     private void getWaktuSekarang() {
         Date date = Calendar.getInstance().getTime();
@@ -142,7 +145,6 @@ public class HomeFragment extends BaseFragment {
         String formatFix = hari + ", " + tanggal + " " + bulan + " " + year;
         waktuHariini.setText(String.valueOf(formatFix));
     }
-
     private void getNamaHari() {
         Date dateNow = Calendar.getInstance().getTime();
         waktusekarang = (String) android.text.format.DateFormat.format("HH:mm", dateNow);
