@@ -90,7 +90,6 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
-
     private void dataResponseNegara() {
         Call<List<ModelDataNegara>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
         call.enqueue(new Callback<List<ModelDataNegara>>() {
@@ -109,7 +108,6 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
-
     private void getWaktuSekarang() {
         Date date = Calendar.getInstance().getTime();
         String tanggal = (String) DateFormat.format("d", date); // 20

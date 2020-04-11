@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#D81B60</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDark">#B2DEF1</color>
+    <color name="colorAccent">#B2DEF1</color>
 
     <color name="putih">#FFFFFF</color>
+
+    <color name="positif">#FF8F00</color>
+    <color name="sembuh">#558B2F</color>
+    <color name="meninggal">#C62828</color>
 
 </resources>
