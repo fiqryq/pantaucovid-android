@@ -14,5 +14,5 @@ public interface Api {
     Call<List<ResponseBody>> getDataProvinsi();
 
     @GET("indonesia")
-    Call<ModelDataNegara> getDataNegara();
+    Call<List<ModelDataNegara>> getDataNegara();
 }

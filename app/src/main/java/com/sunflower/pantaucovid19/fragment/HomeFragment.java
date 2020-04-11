@@ -92,18 +92,20 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void dataResponseNegara() {
-        Api api = RetrofitClient.getApiClient(getContext()).create(Api.class);
-        Call<ModelDataNegara> result = api.getDataNegara();
-        result.enqueue(new Callback<ModelDataNegara>() {
+        Call<List<ModelDataNegara>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
+        call.enqueue(new Callback<List<ModelDataNegara>>() {
             @Override
-            public void onResponse(Call<ModelDataNegara> call, Response<ModelDataNegara> response) {
-                showToastLong("Berhasil");
+            public void onResponse(Call<List<ModelDataNegara>> call, Response<List<ModelDataNegara>> response) {
+                for (int i = 0; i <response.body().size() ; i++) {
+                    dshPositif.setText(response.body().get(i).getPositif());
+                    dshSembuh.setText(response.body().get(i).getSembuh());
+                    dshMeninggal.setText(response.body().get(i).getMeninggal());
+                }
             }
 
             @Override
-            public void onFailure(Call<ModelDataNegara> call, Throwable t) {
-                showToastLong("gagal");
-                Log.d("gagalresponse",t.getMessage());
+            public void onFailure(Call<List<ModelDataNegara>> call, Throwable t) {
+
             }
         });
     }
