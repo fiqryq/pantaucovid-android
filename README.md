@@ -2,7 +2,7 @@
 - Development
 
 # Download App
-- https://api.kawalcorona.com/
+- http://pantaucovid.fiqrychoerudin.space/
 
 # About This Project
 Information about Covid 19
