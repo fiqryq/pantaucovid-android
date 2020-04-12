@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sunflower.pantaucovid19.R;
-import com.sunflower.pantaucovid19.adapter.Adapter;
+import com.sunflower.pantaucovid19.ui.adapter.HomeAdapter;
 import com.sunflower.pantaucovid19.base.BaseFragment;
-import com.sunflower.pantaucovid19.model.ModelDataNegara;
-import com.sunflower.pantaucovid19.model.ResponseBody;
-import com.sunflower.pantaucovid19.remote.Api;
-import com.sunflower.pantaucovid19.remote.RetrofitClient;
+import com.sunflower.pantaucovid19.source.model.Negara;
+import com.sunflower.pantaucovid19.source.model.ResponseBody;
+import com.sunflower.pantaucovid19.source.remote.Api;
+import com.sunflower.pantaucovid19.source.remote.ApiService;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,7 +39,7 @@ import retrofit2.Response;
 public class HomeFragment extends BaseFragment {
 
     private ArrayList<ResponseBody> dataProvinsi = new ArrayList<>();
-    private Adapter adapter;
+    private HomeAdapter homeAdapter;
     private RecyclerView provinsiRecyclerView;
     private String hari, waktusekarang;
     private TextView waktuHariini, dshPositif, dshSembuh, dshMeninggal;
@@ -69,15 +69,15 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void dataResponseProvinsi() {
-        Call<List<ResponseBody>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataProvinsi();
+        Call<List<ResponseBody>> call = ApiService.getApiClient(getContext()).create(Api.class).getDataProvinsi();
         call.enqueue(new Callback<List<ResponseBody>>() {
             @Override
             public void onResponse(Call<List<ResponseBody>> call, Response<List<ResponseBody>> response) {
                 if (response.isSuccessful()) {
                     mProgressbar.setVisibility(View.GONE);
                     dataProvinsi.addAll(response.body());
-                    adapter = new Adapter(dataProvinsi);
-                    provinsiRecyclerView.setAdapter(adapter);
+                    homeAdapter = new HomeAdapter(dataProvinsi);
+                    provinsiRecyclerView.setAdapter(homeAdapter);
                 } else {
                     Toast.makeText(getContext(), "Gagal" + response.message(), Toast.LENGTH_SHORT).show();
                 }
@@ -90,10 +90,10 @@ public class HomeFragment extends BaseFragment {
         });
     }
     private void dataResponseNegara() {
-        Call<List<ModelDataNegara>> call = RetrofitClient.getApiClient(getContext()).create(Api.class).getDataNegara();
-        call.enqueue(new Callback<List<ModelDataNegara>>() {
+        Call<List<Negara>> call = ApiService.getApiClient(getContext()).create(Api.class).getDataNegara();
+        call.enqueue(new Callback<List<Negara>>() {
             @Override
-            public void onResponse(Call<List<ModelDataNegara>> call, Response<List<ModelDataNegara>> response) {
+            public void onResponse(Call<List<Negara>> call, Response<List<Negara>> response) {
                 for (int i = 0; i <response.body().size() ; i++) {
                     dshPositif.setText(response.body().get(i).getPositif());
                     dshSembuh.setText(response.body().get(i).getSembuh());
@@ -102,7 +102,7 @@ public class HomeFragment extends BaseFragment {
             }
 
             @Override
-            public void onFailure(Call<List<ModelDataNegara>> call, Throwable t) {
+            public void onFailure(Call<List<Negara>> call, Throwable t) {
 
             }
         });

@@ -1,19 +1,18 @@
-package com.sunflower.pantaucovid19.remote;
+package com.sunflower.pantaucovid19.source.remote;
 
 import android.content.Context;
 
 import com.readystatesoftware.chuck.ChuckInterceptor;
+import com.sunflower.pantaucovid19.utils.Constant;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
+public class ApiService {
 
-    private static final String BASE_URL = "https://api.kawalcorona.com/";
     private static Retrofit retrofit;
 
     public static Retrofit getApiClient(Context context) {
@@ -27,7 +26,7 @@ public class RetrofitClient {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(Constant.Url.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

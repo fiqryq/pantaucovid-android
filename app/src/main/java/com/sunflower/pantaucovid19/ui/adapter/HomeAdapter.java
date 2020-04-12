@@ -1,6 +1,5 @@
-package com.sunflower.pantaucovid19.adapter;
+package com.sunflower.pantaucovid19.ui.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sunflower.pantaucovid19.R;
-import com.sunflower.pantaucovid19.model.ResponseBody;
+import com.sunflower.pantaucovid19.source.model.ResponseBody;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     private ArrayList<ResponseBody> mData;
 
-    public Adapter(ArrayList<ResponseBody> mData) {
+    public HomeAdapter(ArrayList<ResponseBody> mData) {
         this.mData = mData;
     }
 

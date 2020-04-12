@@ -14,3 +14,28 @@
 .cxx
 .idea
 google-services.json
+/app/version.properties
+
+/.gradle
+
+built application files
+.apk
+.ap_
+
+files for the dex VM
+*.dex
+
+Java class files
+*.class
+
+generated files
+bin/
+gen/
+.externalNativeBuild/
+
+Local configuration file (sdk path, etc)
+local.properties
+app/version.properties
+
+# SonarQube
+.sonar/

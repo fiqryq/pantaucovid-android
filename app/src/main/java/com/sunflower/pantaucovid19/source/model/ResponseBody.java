@@ -1,4 +1,4 @@
-package com.sunflower.pantaucovid19.model;
+package com.sunflower.pantaucovid19.source.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,13 +7,13 @@ public class ResponseBody {
 
     @Expose
     @SerializedName("attributes")
-    private ModelDataProvinsi modelDataProvinsi;
+    private Provinsi modelDataProvinsi;
 
-    public ModelDataProvinsi getModelDataProvinsi() {
+    public Provinsi getModelDataProvinsi() {
         return modelDataProvinsi;
     }
 
-    public void setModelDataProvinsi(ModelDataProvinsi modelDataProvinsi) {
+    public void setModelDataProvinsi(Provinsi modelDataProvinsi) {
         this.modelDataProvinsi = modelDataProvinsi;
     }
 }

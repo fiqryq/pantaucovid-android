@@ -1,4 +1,4 @@
-package com.sunflower.pantaucovid19.Utils;
+package com.sunflower.pantaucovid19.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

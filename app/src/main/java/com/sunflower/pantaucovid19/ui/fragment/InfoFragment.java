@@ -32,12 +32,7 @@ public class InfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAbout = view.findViewById(R.id.tv_aboutapp);
-        mAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IntentAbout();
-            }
-        });
+        mAbout.setOnClickListener(v -> IntentAbout());
     }
 
     private void IntentAbout() {
