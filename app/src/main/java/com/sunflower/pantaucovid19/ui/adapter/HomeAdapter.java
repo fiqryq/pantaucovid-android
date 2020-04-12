@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sunflower.pantaucovid19.R;
-import com.sunflower.pantaucovid19.source.model.ResponseBody;
+import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
 
 import java.util.ArrayList;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
-    private ArrayList<ResponseBody> mData;
+    private ArrayList<ResponseProvinsi> mData;
 
-    public HomeAdapter(ArrayList<ResponseBody> mData) {
+    public HomeAdapter(ArrayList<ResponseProvinsi> mData) {
         this.mData = mData;
     }
 
@@ -32,10 +32,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mProvinsi.setText(mData.get(position).getModelDataProvinsi().getProvinsi());
-        holder.mKasusPositif.setText(mData.get(position).getModelDataProvinsi().getKasusPositif());
-        holder.mKasusMeninggal.setText(mData.get(position).getModelDataProvinsi().getKasusMeninggal());
-        holder.mKasusSembuh.setText(mData.get(position).getModelDataProvinsi().getKasusSembuh());
+        holder.mProvinsi.setText(mData.get(position).getProvinsi().getProvinsi());
+        holder.mKasusPositif.setText(mData.get(position).getProvinsi().getKasusPositif());
+        holder.mKasusMeninggal.setText(mData.get(position).getProvinsi().getKasusMeninggal());
+        holder.mKasusSembuh.setText(mData.get(position).getProvinsi().getKasusSembuh());
     }
 
     @Override

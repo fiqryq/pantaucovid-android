@@ -1,6 +1,8 @@
 package com.sunflower.pantaucovid19.base;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -46,6 +48,14 @@ public class BaseActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(layout, fragment)
                 .commit();
+    }
+
+    protected void showingProgress(ProgressBar progressBar) {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    protected void hidingProgress(ProgressBar progressBar) {
+        progressBar.setVisibility(View.GONE);
     }
 
 }

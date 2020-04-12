@@ -1,6 +1,7 @@
 package com.sunflower.pantaucovid19.base;
 
 import android.os.Bundle;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -47,5 +48,12 @@ public class BaseFragment extends Fragment {
                 .commit();
     }
 
+    protected void showingProgress(ProgressBar progressBar) {
+        mActivity.showingProgress(progressBar);
+    }
+
+    protected void hidingProgress(ProgressBar progressBar) {
+        mActivity.hidingProgress(progressBar);
+    }
 
 }

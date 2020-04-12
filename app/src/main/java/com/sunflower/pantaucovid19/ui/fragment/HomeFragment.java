@@ -1,13 +1,11 @@
 package com.sunflower.pantaucovid19.ui.fragment;
 
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,21 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sunflower.pantaucovid19.R;
-import com.sunflower.pantaucovid19.ui.adapter.HomeAdapter;
 import com.sunflower.pantaucovid19.base.BaseFragment;
+import com.sunflower.pantaucovid19.source.DataRepository;
 import com.sunflower.pantaucovid19.source.model.Negara;
-import com.sunflower.pantaucovid19.source.model.ResponseBody;
-import com.sunflower.pantaucovid19.source.remote.Api;
-import com.sunflower.pantaucovid19.source.remote.ApiService;
+import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
+import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback;
+import com.sunflower.pantaucovid19.ui.adapter.HomeAdapter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import static com.sunflower.pantaucovid19.utils.FuncHelper.Func.getTimeNow;
 
 
 /**
@@ -38,12 +32,12 @@ import retrofit2.Response;
  */
 public class HomeFragment extends BaseFragment {
 
-    private ArrayList<ResponseBody> dataProvinsi = new ArrayList<>();
-    private HomeAdapter homeAdapter;
     private RecyclerView provinsiRecyclerView;
-    private String hari, waktusekarang;
-    private TextView waktuHariini, dshPositif, dshSembuh, dshMeninggal;
+    private TextView dshPositif;
+    private TextView dshSembuh;
+    private TextView dshMeninggal;
     private ProgressBar mProgressbar;
+    private DataRepository dataRepository;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,115 +47,77 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        dataRepository = new DataRepository(getContext());
+
         provinsiRecyclerView = view.findViewById(R.id.rv_provinsi);
-        provinsiRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        waktuHariini = view.findViewById(R.id.tvHariini);
         dshPositif = view.findViewById(R.id.dshPositif);
         dshSembuh = view.findViewById(R.id.dshSembuh);
         dshMeninggal = view.findViewById(R.id.dshMeninggal);
         mProgressbar = view.findViewById(R.id.progressBar);
-        mProgressbar.setVisibility(View.VISIBLE);
+        TextView waktuHariini = view.findViewById(R.id.tvHariini);
 
-        getNamaHari();
-        getWaktuSekarang();
-        dataResponseProvinsi();
-        dataResponseNegara();
+        waktuHariini.setText(getTimeNow());
+
+        getNegara();
+        getProvinsi();
+
     }
 
-    private void dataResponseProvinsi() {
-        Call<List<ResponseBody>> call = ApiService.getApiClient(getContext()).create(Api.class).getDataProvinsi();
-        call.enqueue(new Callback<List<ResponseBody>>() {
+    private void getProvinsi() {
+        dataRepository.getProvinsi(new GetRemoteCallback<List<ResponseProvinsi>>() {
             @Override
-            public void onResponse(Call<List<ResponseBody>> call, Response<List<ResponseBody>> response) {
-                if (response.isSuccessful()) {
-                    mProgressbar.setVisibility(View.GONE);
-                    dataProvinsi.addAll(response.body());
-                    homeAdapter = new HomeAdapter(dataProvinsi);
-                    provinsiRecyclerView.setAdapter(homeAdapter);
-                } else {
-                    Toast.makeText(getContext(), "Gagal" + response.message(), Toast.LENGTH_SHORT).show();
+            public void onSuccess(List<ResponseProvinsi> data) {
+                ArrayList<ResponseProvinsi> dataProvinsi = new ArrayList<>(data);
+                HomeAdapter homeAdapter = new HomeAdapter(dataProvinsi);
+                provinsiRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                provinsiRecyclerView.setAdapter(homeAdapter);
+            }
+
+            @Override
+            public void onFailed(String errorMessage) {
+                showToastShort(errorMessage);
+            }
+
+            @Override
+            public void onShowProgress() {
+                showingProgress(mProgressbar);
+            }
+
+            @Override
+            public void onHideProgress() {
+                hidingProgress(mProgressbar);
+            }
+        });
+    }
+
+    private void getNegara() {
+        dataRepository.getNegara(new GetRemoteCallback<List<Negara>>() {
+            @Override
+            public void onSuccess(List<Negara> data) {
+                for (int i = 0; i < data.size(); i++) {
+                    dshPositif.setText(data.get(i).getPositif());
+                    dshSembuh.setText(data.get(i).getSembuh());
+                    dshMeninggal.setText(data.get(i).getMeninggal());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<ResponseBody>> call, Throwable t) {
-
-            }
-        });
-    }
-    private void dataResponseNegara() {
-        Call<List<Negara>> call = ApiService.getApiClient(getContext()).create(Api.class).getDataNegara();
-        call.enqueue(new Callback<List<Negara>>() {
-            @Override
-            public void onResponse(Call<List<Negara>> call, Response<List<Negara>> response) {
-                for (int i = 0; i <response.body().size() ; i++) {
-                    dshPositif.setText(response.body().get(i).getPositif());
-                    dshSembuh.setText(response.body().get(i).getSembuh());
-                    dshMeninggal.setText(response.body().get(i).getMeninggal());
-                }
+            public void onFailed(String errorMessage) {
+                showToastShort(errorMessage);
             }
 
             @Override
-            public void onFailure(Call<List<Negara>> call, Throwable t) {
+            public void onShowProgress() {
+                showingProgress(mProgressbar);
+            }
 
+            @Override
+            public void onHideProgress() {
+                hidingProgress(mProgressbar);
             }
         });
     }
-    private void getWaktuSekarang() {
-        Date date = Calendar.getInstance().getTime();
-        String tanggal = (String) DateFormat.format("d", date); // 20
-        String monthNumber = (String) DateFormat.format("M", date); // 06
-        String year = (String) DateFormat.format("yyyy", date); // 2013
 
-        int month = Integer.parseInt(monthNumber);
-        String bulan = null;
 
-        if (month == 1) {
-            bulan = "Januari";
-        } else if (month == 2) {
-            bulan = "Februari";
-        } else if (month == 3) {
-            bulan = "Maret";
-        } else if (month == 4) {
-            bulan = "April";
-        } else if (month == 5) {
-            bulan = "Mei";
-        } else if (month == 6) {
-            bulan = "Juni";
-        } else if (month == 7) {
-            bulan = "Juli";
-        } else if (month == 8) {
-            bulan = "Agustus";
-        } else if (month == 9) {
-            bulan = "September";
-        } else if (month == 10) {
-            bulan = "Oktober";
-        } else if (month == 11) {
-            bulan = "November";
-        } else if (month == 12) {
-            bulan = "Desember";
-        }
-        String formatFix = hari + ", " + tanggal + " " + bulan + " " + year;
-        waktuHariini.setText(String.valueOf(formatFix));
-    }
-    private void getNamaHari() {
-        Date dateNow = Calendar.getInstance().getTime();
-        waktusekarang = (String) android.text.format.DateFormat.format("HH:mm", dateNow);
-        hari = (String) android.text.format.DateFormat.format("EEEE", dateNow);
-        if (hari.equalsIgnoreCase("sunday")) {
-            hari = "minggu";
-        } else if (hari.equalsIgnoreCase("monday")) {
-            hari = "senin";
-        } else if (hari.equalsIgnoreCase("tuesday")) {
-            hari = "selasa";
-        } else if (hari.equalsIgnoreCase("wednesday")) {
-            hari = "rabu";
-        } else if (hari.equalsIgnoreCase("thursday")) {
-            hari = "kamis";
-        } else if (hari.equalsIgnoreCase("friday")) {
-            hari = "jumat";
-        } else if (hari.equalsIgnoreCase("saturday")) {
-            hari = "sabtu";
-        }
-    }
 }
