@@ -1,6 +1,9 @@
 # Pantau-Covid19 By Fiqry Choerudin
 - Development
 
+# Download App
+- https://api.kawalcorona.com/
+
 # About This Project
 Information about Covid 19
 
