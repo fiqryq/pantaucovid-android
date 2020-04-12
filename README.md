@@ -1,7 +1,7 @@
-# Pantau-Covid19 By Fiqry Choerudin
+# Pantaucovid - opensource project
 - Development
 
-# Download App
+# Download Demo App
 - http://pantaucovid.fiqrychoerudin.space/
 
 # About This Project
@@ -20,6 +20,8 @@ Very open to anyone, I'll write your name under this, please contribute by sendi
 Name Of Contribute
 - Fiqry Choerudin
 - Muhammad Faisal Amir
+- Jeiv Septian R
+- Faisal Ridwan
 
 Waiting for your contribute
 
