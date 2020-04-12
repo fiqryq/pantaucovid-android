@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity android:name=".ui.activity.AboutActivity" android:theme="@style/AppTheme2" android:label="Tentang Aplikasi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sunflower.pantaucovid19.ui.activity.AboutActivity" />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
