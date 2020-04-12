@@ -8,7 +8,7 @@
 Information about Covid 19
 
 # Screenshoot Apps (Development-Mode)
-<span align="center"><img width="200px" height="360px" src="docs/images/145755.jpg"></span>
+<span align="center"><img width="200px" height="360px" src="docs/images/dev1.jpg"></span>
 
 # Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me

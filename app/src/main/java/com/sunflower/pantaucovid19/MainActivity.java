@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.sunflower.pantaucovid19.base.BaseActivity;
-import com.sunflower.pantaucovid19.fragment.HomeFragment;
-import com.sunflower.pantaucovid19.fragment.InfoFragment;
+import com.sunflower.pantaucovid19.ui.fragment.HomeFragment;
+import com.sunflower.pantaucovid19.ui.fragment.InfoFragment;
 
 public class MainActivity extends BaseActivity {
 

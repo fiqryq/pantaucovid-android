@@ -1,15 +1,7 @@
-package com.sunflower.pantaucovid19.fragment;
+package com.sunflower.pantaucovid19.ui.fragment;
 
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sunflower.pantaucovid19.MainActivity;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.adapter.Adapter;
 import com.sunflower.pantaucovid19.base.BaseFragment;
@@ -40,9 +31,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-
-import static androidx.core.content.ContextCompat.getSystemService;
 
 
 /**

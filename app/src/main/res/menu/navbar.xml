@@ -5,7 +5,7 @@
         android:id="@+id/home"
         android:title="Home"
         android:icon="@drawable/ic_home_black_24dp"
-        app:cnb_backgroundColor="#D81B60"
+        app:cnb_backgroundColor="@color/colorPrimaryDark"
         app:cnb_iconColor="#ffff"
         app:cnb_textColor="#121212"/>
 
@@ -13,7 +13,7 @@
         android:id="@+id/info"
         android:title="Informasi"
         android:icon="@drawable/ic_info_outline_black_24dp"
-        app:cnb_backgroundColor="#D81B60"
+        app:cnb_backgroundColor="@color/colorPrimaryDark"
         app:cnb_iconColor="#ffff"
         app:cnb_textColor="#121212"/>
 
