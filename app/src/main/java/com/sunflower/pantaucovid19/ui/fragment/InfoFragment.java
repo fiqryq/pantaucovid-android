@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.sunflower.pantaucovid19.R;
@@ -29,7 +30,7 @@ public class InfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView mAbout = view.findViewById(R.id.tv_aboutapp);
+        ConstraintLayout mAbout = view.findViewById(R.id.aboutSelect);
         mAbout.setOnClickListener(v -> IntentAbout());
 
     }
