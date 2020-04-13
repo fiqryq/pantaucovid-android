@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listInfoLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:padding="5dp"
+    android:background="@drawable/content_informasi"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:elevation="3dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/listInfoImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/alert" />
+
+    <TextView
+        android:id="@+id/listInfoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        tools:text="Fiqry Choerudin"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/listInfoImage"
+        app:layout_constraintTop_toTopOf="@+id/listInfoImage" />
+
+    <TextView
+        android:id="@+id/listInfoGithub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        tools:text="github.com/fiqryq"
+        app:layout_constraintStart_toEndOf="@+id/listInfoImage"
+        app:layout_constraintTop_toBottomOf="@+id/listInfoName" />
+</androidx.constraintlayout.widget.ConstraintLayout>
