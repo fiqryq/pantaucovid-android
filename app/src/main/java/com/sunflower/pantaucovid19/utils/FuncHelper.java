@@ -86,7 +86,7 @@ public class FuncHelper {
         }
 
         public static String getGithubUrl(String username){
-            return "https://github.com/";
+            return "https://github.com/"+username;
         }
 
     }

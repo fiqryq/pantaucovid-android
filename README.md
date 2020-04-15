@@ -35,6 +35,7 @@ Name Of Contribute
 - Muhammad Faisal Amir
 - Jeiv Septian R
 - Faisal Ridwan
+- Davin Alfarizky Putra Basudewa
 
 Waiting for your contribute
 
