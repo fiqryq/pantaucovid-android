@@ -8,6 +8,7 @@
 package com.sunflower.pantaucovid19.utils
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.DialogInterface
@@ -45,7 +46,7 @@ class LocationTrack(context : Context) : LocationListener {
 
 
     private val MIN_TIME_BW_UPDATES = 1000 * 60 * 1.toLong()
-    protected var locationManager: LocationManager? = null
+    var locationManager: LocationManager? = null
 
     var permissions = ArrayList<String>()
     var permissionsToRequest = ArrayList<String>()
@@ -89,7 +90,7 @@ class LocationTrack(context : Context) : LocationListener {
 
                 val providers: List<String> = locationManager!!.getProviders(true)
                 var bestLocation: Location? = null
-                if (ActivityCompat.checkSelfPermission(mContext as MainActivity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(mContext as Activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return null
                 }
                 for (provider in providers) {
@@ -126,7 +127,7 @@ class LocationTrack(context : Context) : LocationListener {
 
     fun stopListener() {
         if (locationManager != null) {
-            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission((mContext as Activity), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return
             }
             locationManager!!.removeUpdates(this@LocationTrack)

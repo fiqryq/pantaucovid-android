@@ -8,7 +8,9 @@ import com.sunflower.pantaucovid19.base.BaseActivity;
 import com.sunflower.pantaucovid19.ui.fragment.BeritaFragment;
 import com.sunflower.pantaucovid19.ui.fragment.HomeFragment;
 import com.sunflower.pantaucovid19.ui.fragment.InfoFragment;
+import com.sunflower.pantaucovid19.utils.Geography;
 import com.sunflower.pantaucovid19.utils.LocationTrack;
+import com.sunflower.pantaucovid19.utils.LocationsObject;
 
 public class MainActivity extends BaseActivity {
     private LocationTrack locate;
@@ -20,7 +22,9 @@ public class MainActivity extends BaseActivity {
         setupBottomNav(bottomnav);
         locate = new LocationTrack(this);
         if (locate.canGetLocation()){
-            Toast.makeText(this,"Lang: "+locate.getLatitude()+ " Long "+ locate.getLongitude(),Toast.LENGTH_LONG).show();
+            Geography geo = new Geography(locate.getLatitude(),locate.getLongitude(),this);
+            LocationsObject lo = geo.getLocationObject();
+            Toast.makeText(this,"Provinsi: "+lo.getState(),Toast.LENGTH_LONG).show();
         }else {
             locate.showSettingsAlert();
         }
