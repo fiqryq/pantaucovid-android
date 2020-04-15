@@ -2,9 +2,13 @@ package com.sunflower.pantaucovid19.source.remote;
 
 import android.content.Context;
 
+import com.frogobox.frogonewsapi.data.response.ArticleResponse;
+import com.frogobox.frogonewsapi.data.response.SourceResponse;
+import com.frogobox.frogonewsapi.util.NewsUrl;
 import com.sunflower.pantaucovid19.source.DataSource;
 import com.sunflower.pantaucovid19.source.model.Negara;
 import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
+import com.sunflower.pantaucovid19.utils.Constant;
 
 import java.util.List;
 
@@ -39,7 +43,7 @@ public class RemoteDataSource implements DataSource {
     @Override
     public void getNegara(GetRemoteCallback<List<Negara>> callback) {
         callback.onShowProgress();
-        Call<List<Negara>> call = ApiService.getApiClient(context).create(Api.class).getDataNegara();
+        Call<List<Negara>> call = ApiService.getApiClient(Constant.Url.BASE_URL, context).create(Api.class).getDataNegara();
         call.enqueue(new Callback<List<Negara>>() {
             @Override
             public void onResponse(Call<List<Negara>> call, Response<List<Negara>> response) {
@@ -57,7 +61,7 @@ public class RemoteDataSource implements DataSource {
     @Override
     public void getProvinsi(GetRemoteCallback<List<ResponseProvinsi>> callback) {
         callback.onShowProgress();
-        Call<List<ResponseProvinsi>> call = ApiService.getApiClient(context).create(Api.class).getDataProvinsi();
+        Call<List<ResponseProvinsi>> call = ApiService.getApiClient(Constant.Url.BASE_URL, context).create(Api.class).getDataProvinsi();
         call.enqueue(new Callback<List<ResponseProvinsi>>() {
             @Override
             public void onResponse(Call<List<ResponseProvinsi>> call, Response<List<ResponseProvinsi>> response) {
@@ -74,4 +78,85 @@ public class RemoteDataSource implements DataSource {
         });
     }
 
+    @Override
+    public void getTopHeadline(String apiKey, String q, String sources, String category, String country, GetRemoteCallback<ArticleResponse> callback) {
+        callback.onShowProgress();
+        Call<ArticleResponse> call = ApiService.getApiClient(NewsUrl.NEWS_BASE_URL, context).create(Api.class).getTopHeadline(apiKey, q, sources, category, country);
+        call.enqueue(new Callback<ArticleResponse>() {
+            @Override
+            public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onHideProgress();
+                    callback.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArticleResponse> call, Throwable t) {
+                callback.onFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getEverythings(String apiKey,
+                               String q,
+                               String from,
+                               String to,
+                               String qInTitle,
+                               String sources,
+                               String domains,
+                               String excludeDomains,
+                               String language,
+                               String sortBy,
+                               GetRemoteCallback<ArticleResponse> callback) {
+        callback.onShowProgress();
+        Call<ArticleResponse> call = ApiService.getApiClient(NewsUrl.NEWS_BASE_URL, context)
+                .create(Api.class)
+                .getEverythings(
+                        apiKey,
+                        q,
+                        from,
+                        to,
+                        qInTitle,
+                        sources,
+                        domains,
+                        excludeDomains,
+                        language,
+                        sortBy);
+        call.enqueue(new Callback<ArticleResponse>() {
+            @Override
+            public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onHideProgress();
+                    callback.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArticleResponse> call, Throwable t) {
+                callback.onFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getSources(String apiKey, String language, String country, String category, GetRemoteCallback<SourceResponse> callback) {
+        callback.onShowProgress();
+        Call<SourceResponse> call = ApiService.getApiClient(NewsUrl.NEWS_BASE_URL, context).create(Api.class).getSources(apiKey, language, country, category);
+        call.enqueue(new Callback<SourceResponse>() {
+            @Override
+            public void onResponse(Call<SourceResponse> call, Response<SourceResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onHideProgress();
+                    callback.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SourceResponse> call, Throwable t) {
+                callback.onFailed(t.getLocalizedMessage());
+            }
+        });
+    }
 }

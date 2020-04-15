@@ -20,7 +20,7 @@ public class Constant {
 
     public static class Url {
         public final static String BASE_URL = "https://api.kawalcorona.com/";
-        public final static String PROVINSI = "indonesia/provinsi/?fbclid=IwAR2et4U7LTIEnKnPe0uBWfjn6lTmyyu-EEssrIBO4bLxx1W_lJmUtBnASzU";
+        public final static String PROVINSI = "indonesia/provinsi/";
         public final static String NEGARA = "indonesia";
     }
 

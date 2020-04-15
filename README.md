@@ -8,7 +8,20 @@
 Information about Covid 19
 
 # Screenshoot Apps (Development-Mode)
-<span align="center"><img width="200px" height="360px" src="docs/images/dev1.jpg"></span>
+<span align="center"><img width="200px" height="360px" src="docs/images/ss_apps.png"></span>
+<span align="center"><img width="200px" height="360px" src="docs/images/ss_news.png"></span>
+<span align="center"><img width="200px" height="360px" src="docs/images/ss_about.png"></span>
+<span align="center"><img width="200px" height="360px" src="docs/images/ss_contributor.png"></span>
+
+# How to contribute
+## Doing task
+- Find TODO list on issue
+- Pickup Task with label "all ready pickup"
+
+## Completed task
+- Change the label already pick up to be ready to review
+- Waiting Pull owner for merge request
+- Finish
 
 # Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
@@ -22,6 +35,7 @@ Name Of Contribute
 - Muhammad Faisal Amir
 - Jeiv Septian R
 - Faisal Ridwan
+- Davin Alfarizky Putra Basudewa
 
 Waiting for your contribute
 

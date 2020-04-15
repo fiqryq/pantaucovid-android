@@ -2,6 +2,8 @@ package com.sunflower.pantaucovid19.source;
 
 import android.content.Context;
 
+import com.frogobox.frogonewsapi.data.response.ArticleResponse;
+import com.frogobox.frogonewsapi.data.response.SourceResponse;
 import com.sunflower.pantaucovid19.source.model.Negara;
 import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
 import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback;
@@ -43,4 +45,18 @@ public class DataRepository implements DataSource {
         remoteDataSource.getProvinsi(callback);
     }
 
+    @Override
+    public void getTopHeadline(String apiKey, String q, String sources, String category, String country, GetRemoteCallback<ArticleResponse> callback) {
+        remoteDataSource.getTopHeadline(apiKey, q, sources, category, country, callback);
+    }
+
+    @Override
+    public void getEverythings(String apiKey, String q, String from, String to, String qInTitle, String sources, String domains, String excludeDomains, String language, String sortBy, GetRemoteCallback<ArticleResponse> callback) {
+        remoteDataSource.getEverythings(apiKey, q, from, to, qInTitle, sources, domains, excludeDomains, language, sortBy, callback);
+    }
+
+    @Override
+    public void getSources(String apiKey, String language, String country, String category, GetRemoteCallback<SourceResponse> callback) {
+        remoteDataSource.getSources(apiKey, language, country, category, callback);
+    }
 }

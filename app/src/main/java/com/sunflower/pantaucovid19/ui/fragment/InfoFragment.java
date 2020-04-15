@@ -1,6 +1,7 @@
 package com.sunflower.pantaucovid19.ui.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.ui.activity.AboutActivity;
+import com.sunflower.pantaucovid19.ui.activity.EmergencyNumberActivity;
 
 
 /**
@@ -30,9 +33,15 @@ public class InfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ConstraintLayout mCall = view.findViewById(R.id.CallSelect);
         ConstraintLayout mAbout = view.findViewById(R.id.aboutSelect);
         mAbout.setOnClickListener(v -> IntentAbout());
+        mCall.setOnClickListener(v -> IntentCall());
+    }
 
+    private void IntentCall() {
+        Intent intentCall = new Intent(getActivity(), EmergencyNumberActivity.class);
+        startActivity(intentCall);
     }
 
     private void IntentAbout() {

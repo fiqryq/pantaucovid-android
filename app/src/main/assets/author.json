@@ -2,18 +2,28 @@
   "data": [
     {
       "contributor_name": "Fiqry Choerudin",
-      "github": "github.com/fiqryq",
-      "pict_url": "http://pantaucovid.fiqrychoerudin.space/image/25787603.jpg"
+      "github": "fiqryq",
+      "pict_url": "https://avatars0.githubusercontent.com/u/25787603?s=400&u=749bf34a4809d0a66eb84477437970e75e76ba2a&v=4"
     },
     {
       "contributor_name": "Muhammad Faisal Amir",
-      "github": "github.com/amirisback",
-      "pict_url": "http://pantaucovid.fiqrychoerudin.space/image/24654871.jpg"
+      "github": "amirisback",
+      "pict_url": "https://avatars0.githubusercontent.com/u/24654871?s=400&u=5cc524ded0132db8e8b5ddf8adb262c3a44d7040&v=4"
     },
     {
       "contributor_name": "Davin Alfarizky Putra Basudewa",
-      "github": "github.com/rootdavinalfa",
+      "github": "rootdavinalfa",
       "pict_url": "https://avatars3.githubusercontent.com/u/13678202?s=460&u=67f5bfbd69928f3c5822374bce6ffabb252634a5&v=4"
+    },
+    {
+      "contributor_name": "Tengku Belmiro Ramadhani",
+      "github": "castariva18",
+      "pict_url": "https://avatars0.githubusercontent.com/u/37837588?s=400&u=f1b309c414e816cfb4bc8f673c39150b94a4fc09&v=4"
+    },
+    {
+      "contributor_name": "Faisal Ridwan Siregar",
+      "github": "faisalridwan",
+      "pict_url": "https://avatars3.githubusercontent.com/u/31500226?s=400&u=0fb07a62b6913efa32728b0741ecd3a65d2c892b&v=4"
     }
   ]
 }

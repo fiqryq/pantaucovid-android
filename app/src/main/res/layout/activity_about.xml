@@ -53,8 +53,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/infoContributorList"
-        android:layout_width="415dp"
-        android:layout_height="530dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

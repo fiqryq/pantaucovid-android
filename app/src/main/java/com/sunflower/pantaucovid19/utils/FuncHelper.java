@@ -85,6 +85,10 @@ public class FuncHelper {
             return getNameDay() + ", " + tanggal + " " + bulan + " " + year;
         }
 
+        public static String getGithubUrl(String username){
+            return "https://github.com/"+username;
+        }
+
     }
 
 }
