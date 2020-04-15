@@ -15,7 +15,7 @@ public class ApiService {
 
     private static Retrofit retrofit;
 
-    public static Retrofit getApiClient(Context context) {
+    public static Retrofit getApiClient(String baseUrl, Context context) {
 
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()
@@ -24,12 +24,11 @@ public class ApiService {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
 
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(Constant.Url.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
+        retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         return retrofit;
     }

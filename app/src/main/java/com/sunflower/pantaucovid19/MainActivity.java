@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.sunflower.pantaucovid19.base.BaseActivity;
+import com.sunflower.pantaucovid19.ui.fragment.BeritaFragment;
 import com.sunflower.pantaucovid19.ui.fragment.HomeFragment;
 import com.sunflower.pantaucovid19.ui.fragment.InfoFragment;
 
@@ -25,6 +26,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.info:
                     setupFragment(new InfoFragment(), R.id.fragment_container);
+                    break;
+                case R.id.berita:
+                    setupFragment(new BeritaFragment(), R.id.fragment_container);
                     break;
             }
 

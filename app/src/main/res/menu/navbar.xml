@@ -10,6 +10,14 @@
         app:cnb_textColor="#121212"/>
 
     <item
+        android:id="@+id/berita"
+        android:title="Berita"
+        android:icon="@drawable/ic_library_books_black_24dp"
+        app:cnb_backgroundColor="@color/colorPrimaryDark"
+        app:cnb_iconColor="#ffff"
+        app:cnb_textColor="#121212"/>
+
+    <item
         android:id="@+id/info"
         android:title="Informasi"
         android:icon="@drawable/ic_info_outline_black_24dp"
