@@ -13,22 +13,21 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sunflower.pantaucovid19.R
 import com.sunflower.pantaucovid19.source.model.Contributors
-import de.hdodenhof.circleimageview.CircleImageView
+import com.sunflower.pantaucovid19.utils.FuncHelper.Func.getGithubUrl
+import kotlinx.android.synthetic.main.list_contributor.view.*
 
 
-class InfoAdapter(contribList : ArrayList<Contributors>) : RecyclerView.Adapter<InfoAdapter.ViewHolder>() {
+class InfoAdapter(contribList: ArrayList<Contributors>) : RecyclerView.Adapter<InfoAdapter.ViewHolder>() {
     val conList = contribList
-    var context : Context? = null
+    var context: Context? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         context = parent.context
-        val view = inflater.inflate(R.layout.list_contributor,parent,false)
+        val view = inflater.inflate(R.layout.list_contributor, parent, false)
         return ViewHolder(view)
     }
 
@@ -43,19 +42,21 @@ class InfoAdapter(contribList : ArrayList<Contributors>) : RecyclerView.Adapter<
 
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var lays : ConstraintLayout = itemView.findViewById(R.id.listInfoLayout)
-        var name : TextView = itemView.findViewById(R.id.listInfoName)
-        var github : TextView = itemView.findViewById(R.id.listInfoGithub)
-        var image : CircleImageView = itemView.findViewById(R.id.listInfoImage)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val lays = itemView.listInfoLayout
+        val name = itemView.listInfoName
+        val github = itemView.listInfoGithub
+        val image = itemView.listInfoImage
+
         init {
             lays.setOnClickListener {
                 val i = Intent(Intent.ACTION_VIEW)
-                val url = "https://${conList[adapterPosition].githubURL}"
+                val url = getGithubUrl(conList[adapterPosition].githubURL)
                 i.data = Uri.parse(url)
                 println(url)
                 context!!.startActivity(i)
             }
         }
+
     }
 }
