@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sunflower.pantaucovid19">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.AboutActivity" android:theme="@style/AppTheme2" android:label="Tentang Aplikasi">
+        <activity android:name=".ui.activity.EmergencyNumberActivity"></activity>
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:label="Tentang Aplikasi"
+            android:theme="@style/AppTheme2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sunflower.pantaucovid19.ui.activity.AboutActivity" />
@@ -28,5 +32,8 @@
 
         <receiver android:name=".utils.ReminderBroadcast" />
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
