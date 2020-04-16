@@ -1,5 +1,6 @@
 package com.sunflower.pantaucovid19.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.frogobox.frogonewsapi.data.model.Article;
@@ -23,16 +25,20 @@ import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
 import com.sunflower.pantaucovid19.source.DataRepository;
 import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback;
+import com.sunflower.pantaucovid19.ui.activity.WebViewActivity;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BeritaFragment extends BaseFragment {
-
+    private SwipeRefreshLayout swipe2refresh;
+    private ProgressBar progressBar;
+    private FrogoRecyclerView frogoRecyclerView;
     public BeritaFragment() {
         // Required empty public constructor
     }
@@ -47,9 +53,19 @@ public class BeritaFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FrogoRecyclerView frogoRecyclerView = view.findViewById(R.id.rv_news_category);
-        ProgressBar progressBar = view.findViewById(R.id.progress_view);
+        frogoRecyclerView = view.findViewById(R.id.rv_news_category);
+        progressBar = view.findViewById(R.id.progress_view);
+        swipe2refresh = view.findViewById(R.id.refreshNews);
         getTopHeadLine(frogoRecyclerView, progressBar);
+        swipeAction();
+    }
+
+    private void swipeAction(){
+        swipe2refresh.setOnRefreshListener(()->{
+            getTopHeadLine(frogoRecyclerView,progressBar);
+            swipe2refresh.setRefreshing(false);
+        });
+        swipe2refresh.setColorSchemeResources(R.color.colorPrimary);
     }
 
     private void getTopHeadLine(FrogoRecyclerView frogoRecyclerView, ProgressBar progressBar) {
@@ -109,6 +125,9 @@ public class BeritaFragment extends BaseFragment {
                     @Override
                     public void onItemClicked(Article article) {
                         showToastShort(article.getTitle());
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra("url",article.getUrl());
+                        Objects.requireNonNull(getActivity()).startActivity(intent);
                     }
 
                     @Override
