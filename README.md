@@ -36,6 +36,7 @@ Name Of Contribute
 - Jeiv Septian R
 - Faisal Ridwan
 - Davin Alfarizky Putra Basudewa
+- Tengku Belmiro Ramadhani
 
 Waiting for your contribute
 
