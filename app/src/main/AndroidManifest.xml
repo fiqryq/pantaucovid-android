@@ -18,6 +18,14 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.activity.EmergencyNumberActivity"></activity>
         <activity
+            android:name=".ui.activity.WebViewActivity"
+            android:label="Baca Berita"
+            android:theme="@style/AppTheme2">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sunflower.pantaucovid19.ui.activity.WebViewActivity" />
+        </activity>
+        <activity
             android:name=".ui.activity.AboutActivity"
             android:label="Tentang Aplikasi"
             android:theme="@style/AppTheme2">
