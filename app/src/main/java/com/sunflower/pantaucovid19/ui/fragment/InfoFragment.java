@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.ui.activity.AboutActivity;
 import com.sunflower.pantaucovid19.ui.activity.EmergencyNumberActivity;
+import com.sunflower.pantaucovid19.ui.activity.RumahSakitRujukanActivity;
 
 
 /**
@@ -35,8 +36,10 @@ public class InfoFragment extends Fragment {
 
         ConstraintLayout mCall = view.findViewById(R.id.CallSelect);
         ConstraintLayout mAbout = view.findViewById(R.id.aboutSelect);
+        ConstraintLayout mHospital = view.findViewById(R.id.RumahSakit);
         mAbout.setOnClickListener(v -> IntentAbout());
         mCall.setOnClickListener(v -> IntentCall());
+        mHospital.setOnClickListener(view1 -> IntentRumahSakit());
     }
 
     private void IntentCall() {
@@ -46,6 +49,11 @@ public class InfoFragment extends Fragment {
 
     private void IntentAbout() {
         Intent intent = new Intent(getActivity(), AboutActivity.class);
+        startActivity(intent);
+    }
+
+    private void IntentRumahSakit() {
+        Intent intent = new Intent(getActivity(), RumahSakitRujukanActivity.class);
         startActivity(intent);
     }
 }
