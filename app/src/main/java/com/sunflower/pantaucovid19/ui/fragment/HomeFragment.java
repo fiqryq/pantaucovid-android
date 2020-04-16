@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
@@ -32,6 +33,7 @@ import static com.sunflower.pantaucovid19.utils.FuncHelper.Func.getTimeNow;
  */
 public class HomeFragment extends BaseFragment {
 
+    private SwipeRefreshLayout swipe2refresh;
     private RecyclerView provinsiRecyclerView;
     private TextView dshPositif;
     private TextView dshSembuh;
@@ -55,12 +57,23 @@ public class HomeFragment extends BaseFragment {
         dshSembuh = view.findViewById(R.id.dshSembuh);
         dshMeninggal = view.findViewById(R.id.dshMeninggal);
         mProgressbar = view.findViewById(R.id.progressBar);
+        swipe2refresh = view.findViewById(R.id.refreshRVProvinsi);
         TextView waktuHariini = view.findViewById(R.id.tvHariini);
 
         waktuHariini.setText(getTimeNow());
 
         getNegara();
         getProvinsi();
+        swipeAction();
+
+    }
+
+    private void swipeAction(){
+        swipe2refresh.setOnRefreshListener(()->{
+            getProvinsi();
+            swipe2refresh.setRefreshing(false);
+        });
+        swipe2refresh.setColorSchemeResources(R.color.colorPrimary);
 
     }
 
