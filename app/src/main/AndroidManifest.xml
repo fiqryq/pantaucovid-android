@@ -22,6 +22,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sunflower.pantaucovid19.ui.activity.WebViewActivity" />
         </activity>
+        <activity android:name=".ui.activity.RumahSakitRujukanActivity"/>
         <activity
             android:name=".ui.activity.AboutActivity"
             android:label="Tentang Aplikasi"
