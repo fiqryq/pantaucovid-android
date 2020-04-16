@@ -5,4 +5,7 @@
     <string name="str_about">Tentang Aplikasi</string>
     <string name="str_nodarurat">Nomor Darurat</string>
     <string name="str_rumahsakit">Rumah Sakit Corona</string>
+    <string name="informasi_nomor_darurat">Informasi Nomor Darurat</string>
+    <string name="segera_hubungi_nomor_dibawah_nini_untuk_informasi_darurat">Segera hubungi nomor dibawah \nini untuk informasi darurat</string>
+    <string name="_119_call_center">119 Call Center</string>
 </resources>
