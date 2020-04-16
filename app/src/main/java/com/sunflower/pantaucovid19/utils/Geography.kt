@@ -10,6 +10,7 @@ package com.sunflower.pantaucovid19.utils
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import java.io.IOException
 import java.util.*
 
 /**
@@ -35,14 +36,20 @@ class Geography(latitude : Double,longitude : Double,context : Context) {
 
     init{
         geo = Geocoder(this.mContext.applicationContext, Locale.getDefault())
-         addresses = geo!!.getFromLocation(lat, long, 1)
+        try{
+            addresses = geo!!.getFromLocation(lat, long, 1)
+        }catch (e : IOException){
+            e.printStackTrace()
+        }
     }
 
     fun getLocationObject():LocationsObject{
-        println("ADRESS: "+addresses!!.toString())
-        val cityName = addresses!![0].subAdminArea
-        val stateName = addresses!![0].adminArea
-        val countryName = addresses!![0].countryName
-        return LocationsObject(cityName,stateName,countryName)
+        if(addresses!!.isNotEmpty()){
+            val cityName = addresses!![0].subAdminArea
+            val stateName = addresses!![0].adminArea
+            val countryName = addresses!![0].countryName
+            return LocationsObject(cityName,stateName,countryName)
+        }
+        return LocationsObject(null,null,null)
     }
 }
