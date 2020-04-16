@@ -1,9 +1,9 @@
 package com.sunflower.pantaucovid19.utils;
 
-import android.text.format.DateFormat;
-
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Faisal Amir
@@ -49,40 +49,15 @@ public class FuncHelper {
         }
 
         public static String getTimeNow() {
-            Date date = Calendar.getInstance().getTime();
-            String tanggal = (String) DateFormat.format("d", date); // 20
-            String monthNumber = (String) DateFormat.format("M", date); // 06
-            String year = (String) DateFormat.format("yyyy", date); // 2013
+            Locale id = new Locale("in", "ID");
+            String pattern = "EEEE, dd MMMM yyyy";
+            Date today = new Date();
 
-            int month = Integer.parseInt(monthNumber);
-            String bulan = null;
-
-            if (month == 1) {
-                bulan = "Januari";
-            } else if (month == 2) {
-                bulan = "Februari";
-            } else if (month == 3) {
-                bulan = "Maret";
-            } else if (month == 4) {
-                bulan = "April";
-            } else if (month == 5) {
-                bulan = "Mei";
-            } else if (month == 6) {
-                bulan = "Juni";
-            } else if (month == 7) {
-                bulan = "Juli";
-            } else if (month == 8) {
-                bulan = "Agustus";
-            } else if (month == 9) {
-                bulan = "September";
-            } else if (month == 10) {
-                bulan = "Oktober";
-            } else if (month == 11) {
-                bulan = "November";
-            } else if (month == 12) {
-                bulan = "Desember";
-            }
-            return getNameDay() + ", " + tanggal + " " + bulan + " " + year;
+            // Gets formatted date specify by the given pattern for
+            // Indonesian Locale no changes for default date format
+            // is applied here.
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern, id);
+            return sdf.format(today);
         }
 
         public static String getGithubUrl(String username){
