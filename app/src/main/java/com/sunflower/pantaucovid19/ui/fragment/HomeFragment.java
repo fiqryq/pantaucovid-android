@@ -21,6 +21,7 @@ import com.sunflower.pantaucovid19.source.model.Negara;
 import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
 import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback;
 import com.sunflower.pantaucovid19.ui.adapter.HomeAdapter;
+import com.sunflower.pantaucovid19.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,8 +69,8 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    private void swipeAction(){
-        swipe2refresh.setOnRefreshListener(()->{
+    private void swipeAction() {
+        swipe2refresh.setOnRefreshListener(() -> {
             getProvinsi();
             swipe2refresh.setRefreshing(false);
         });
@@ -87,21 +88,21 @@ public class HomeFragment extends BaseFragment {
                 provinsiRecyclerView.setAdapter(homeAdapter);
             }
 
-            @Override
-            public void onFailed(String errorMessage) {
-                showToastShort(errorMessage);
-            }
+                    @Override
+                    public void onFailed(String errorMessage) {
+                        showToastShort(errorMessage);
+                    }
 
-            @Override
-            public void onShowProgress() {
-                showingProgress(mProgressbar);
-            }
+                    @Override
+                    public void onShowProgress() {
+                        showingProgress(mProgressbar);
+                    }
 
-            @Override
-            public void onHideProgress() {
-                hidingProgress(mProgressbar);
-            }
-        });
+                    @Override
+                    public void onHideProgress() {
+                        hidingProgress(mProgressbar);
+                    }
+                });
     }
 
     private void getNegara() {
@@ -115,21 +116,21 @@ public class HomeFragment extends BaseFragment {
                 }
             }
 
-            @Override
-            public void onFailed(String errorMessage) {
-                showToastShort(errorMessage);
-            }
+                    @Override
+                    public void onFailed(String errorMessage) {
+                        showToastShort(errorMessage);
+                    }
 
-            @Override
-            public void onShowProgress() {
-                showingProgress(mProgressbar);
-            }
+                    @Override
+                    public void onShowProgress() {
+                        showingProgress(mProgressbar);
+                    }
 
-            @Override
-            public void onHideProgress() {
-                hidingProgress(mProgressbar);
-            }
-        });
+                    @Override
+                    public void onHideProgress() {
+                        hidingProgress(mProgressbar);
+                    }
+                });
     }
 
 

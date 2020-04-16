@@ -1,20 +1,18 @@
 package com.sunflower.pantaucovid19.ui.fragment;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.sunflower.pantaucovid19.R;
+import com.sunflower.pantaucovid19.base.BaseFragment;
 import com.sunflower.pantaucovid19.ui.activity.AboutActivity;
 import com.sunflower.pantaucovid19.ui.activity.EmergencyNumberActivity;
 import com.sunflower.pantaucovid19.ui.activity.RumahSakitRujukanActivity;
@@ -23,7 +21,7 @@ import com.sunflower.pantaucovid19.ui.activity.RumahSakitRujukanActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

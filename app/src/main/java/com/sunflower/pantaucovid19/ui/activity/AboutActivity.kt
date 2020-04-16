@@ -9,19 +9,18 @@
 package com.sunflower.pantaucovid19.ui.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sunflower.pantaucovid19.R
+import com.sunflower.pantaucovid19.base.BaseActivity
 import com.sunflower.pantaucovid19.source.model.Contributors
 import com.sunflower.pantaucovid19.ui.adapter.InfoAdapter
 import com.sunflower.pantaucovid19.utils.ReadAssetJSON
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class AboutActivity : AppCompatActivity() {
-    var listContributor : RecyclerView? = null
+class AboutActivity : BaseActivity() {
+    var listContributor: RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -29,17 +28,17 @@ class AboutActivity : AppCompatActivity() {
         getProfileData()
     }
 
-    private fun getProfileData(){
-        val jsonData = ReadAssetJSON().getJsonAssets(this,"author.json")
+    private fun getProfileData() {
+        val jsonData = ReadAssetJSON().getJsonAssets(this, "author.json")
         val data = ArrayList<Contributors>()
         try {
             val jsoobj = JSONObject(jsonData!!).getJSONArray("data")
-            for(i in 0 until jsoobj.length()){
+            for (i in 0 until jsoobj.length()) {
                 val x = jsoobj.getJSONObject(i)
                 val name = x.getString("contributor_name")
                 val github = x.getString("github")
                 val pict = x.getString("pict_url")
-                data.add(Contributors(name,github,pict))
+                data.add(Contributors(name, github, pict))
             }
             val adapter = InfoAdapter(data)
             val linearLayoutManager = LinearLayoutManager(this)
@@ -47,7 +46,7 @@ class AboutActivity : AppCompatActivity() {
             listContributor!!.adapter = adapter
 
 
-        }catch (e : JSONException){
+        } catch (e: JSONException) {
             e.printStackTrace()
         }
     }

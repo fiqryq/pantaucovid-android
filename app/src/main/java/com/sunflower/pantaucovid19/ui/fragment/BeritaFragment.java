@@ -39,6 +39,7 @@ public class BeritaFragment extends BaseFragment {
     private SwipeRefreshLayout swipe2refresh;
     private ProgressBar progressBar;
     private FrogoRecyclerView frogoRecyclerView;
+
     public BeritaFragment() {
         // Required empty public constructor
     }
@@ -60,9 +61,9 @@ public class BeritaFragment extends BaseFragment {
         swipeAction();
     }
 
-    private void swipeAction(){
-        swipe2refresh.setOnRefreshListener(()->{
-            getTopHeadLine(frogoRecyclerView,progressBar);
+    private void swipeAction() {
+        swipe2refresh.setOnRefreshListener(() -> {
+            getTopHeadLine(frogoRecyclerView, progressBar);
             swipe2refresh.setRefreshing(false);
         });
         swipe2refresh.setColorSchemeResources(R.color.colorPrimary);
@@ -126,7 +127,7 @@ public class BeritaFragment extends BaseFragment {
                     public void onItemClicked(Article article) {
                         showToastShort(article.getTitle());
                         Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                        intent.putExtra("url",article.getUrl());
+                        intent.putExtra("url", article.getUrl());
                         Objects.requireNonNull(getActivity()).startActivity(intent);
                     }
 

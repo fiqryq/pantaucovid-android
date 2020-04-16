@@ -3,7 +3,6 @@ package com.sunflower.pantaucovid19.source.remote;
 import android.content.Context;
 
 import com.readystatesoftware.chuck.ChuckInterceptor;
-import com.sunflower.pantaucovid19.utils.Constant;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,9 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static Retrofit retrofit;
-
-    public static Retrofit getApiClient(String baseUrl, Context context) {
+    static Retrofit getApiClient(String baseUrl, Context context) {
 
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()
@@ -24,7 +21,7 @@ public class ApiService {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
 
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
