@@ -14,7 +14,7 @@
  * LinkedIn : linkedin.com/in/faisalamircs
  * 
  * FrogoBox Software Industries
- * 
+ *
  -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,46 +22,35 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/frogo_rv_dimen_16dp"
     android:layout_marginEnd="@dimen/frogo_rv_dimen_16dp"
-    android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp"
-    android:background="@drawable/frogo_rv_bg_card"
-    android:elevation="@dimen/frogo_rv_dimen_2dp"
-    android:orientation="vertical"
-    android:padding="@dimen/frogo_rv_dimen_16dp"
+    android:layout_marginBottom="@dimen/dimen_16dp"
+    android:background="@drawable/frogo_rv_bg_card_8dp"
     android:clickable="true"
+    android:elevation="@dimen/frogo_rv_dimen_2dp"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    >
+    android:orientation="vertical"
+    android:padding="@dimen/frogo_rv_dimen_16dp">
 
     <ImageView
         android:id="@+id/iv_url"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
         android:layout_height="@dimen/frogo_rv_dimen_128dp"
-        android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp" />
+        android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/frogo_rv_is_empty_data"
-        android:textSize="16sp"
-        android:maxLines="1"
-        android:textStyle="bold"
-        android:textColor="@color/frogoRvcolorBaseBlack" />
+        style="@style/frogoTvListTitle"
+        android:text="@string/app_name" />
 
     <TextView
         android:id="@+id/tv_published"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp"
+        style="@style/FrogoTvListSubTitle"
         android:text="@string/frogo_rv_is_empty_data" />
 
     <TextView
         android:id="@+id/tv_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="3"
+        style="@style/FrogoTvListDescription"
         android:text="@string/frogo_rv_is_empty_data" />
 
 </LinearLayout>

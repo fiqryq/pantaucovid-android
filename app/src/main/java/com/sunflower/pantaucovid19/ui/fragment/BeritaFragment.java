@@ -20,7 +20,7 @@ import com.frogobox.frogonewsapi.data.response.ArticleResponse;
 import com.frogobox.frogonewsapi.util.NewsConstant;
 import com.frogobox.frogonewsapi.util.NewsUrl;
 import com.frogobox.recycler.FrogoRecyclerView;
-import com.frogobox.recycler.callback.FrogoAdapterCallback;
+import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
 import com.sunflower.pantaucovid19.source.DataRepository;
@@ -103,40 +103,42 @@ public class BeritaFragment extends BaseFragment {
 
     private void setupRecyclerView(FrogoRecyclerView frogoRecyclerView, List<Article> articles) {
 
-        frogoRecyclerView.injectAdapter(
-                R.layout.list_article_vertical,
-                articles,
-                null,
-                new FrogoAdapterCallback<Article>() {
-                    @Override
-                    public void setupInitComponent(@NotNull View view, Article article) {
+        FrogoViewAdapterCallback frogoViewAdapterCallback = new FrogoViewAdapterCallback<Article>() {
+            @Override
+            public void setupInitComponent(@NotNull View view, Article article) {
+                TextView tvTitle = view.findViewById(R.id.tv_title);
+                TextView tvPublishdDate = view.findViewById(R.id.tv_published);
+                TextView tvDescription = view.findViewById(R.id.tv_description);
+                ImageView ivUrl = view.findViewById(R.id.iv_url);
 
-                        TextView tvTitle = view.findViewById(R.id.tv_title);
-                        TextView tvPublishdDate = view.findViewById(R.id.tv_published);
-                        TextView tvDescription = view.findViewById(R.id.tv_description);
-                        ImageView ivUrl = view.findViewById(R.id.iv_url);
+                tvTitle.setText(article.getTitle());
+                tvPublishdDate.setText(article.getPublishedAt());
+                tvDescription.setText(article.getDescription());
+                Glide.with(view.getContext()).load(article.getUrlToImage()).into(ivUrl);
+            }
 
-                        tvTitle.setText(article.getTitle());
-                        tvPublishdDate.setText(article.getPublishedAt());
-                        tvDescription.setText(article.getDescription());
-                        Glide.with(view.getContext()).load(article.getUrlToImage()).into(ivUrl);
+            @Override
+            public void onItemLongClicked(Article article) {
+                showToastShort(article.getTitle());
+            }
 
-                    }
+            @Override
+            public void onItemClicked(Article article) {
+                showToastShort(article.getTitle());
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra("url", article.getUrl());
+                Objects.requireNonNull(getActivity()).startActivity(intent);
+            }
+        };
 
-                    @Override
-                    public void onItemClicked(Article article) {
-                        showToastShort(article.getTitle());
-                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                        intent.putExtra("url", article.getUrl());
-                        Objects.requireNonNull(getActivity()).startActivity(intent);
-                    }
+        frogoRecyclerView.injector()
+                .addData(articles)
+                .addCustomView(R.layout.list_article_vertical)
+                .addEmptyView(null)
+                .addCallback(frogoViewAdapterCallback)
+                .createLayoutLinearVertical(false)
+                .build();
 
-                    @Override
-                    public void onItemLongClicked(Article article) {
-                        showToastShort(article.getTitle());
-                    }
-                });
-        frogoRecyclerView.isViewLinearVertical(false);
     }
 
 
