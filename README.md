@@ -1,46 +1,59 @@
-# Pantaucovid - opensource project
-- Development
+# Pantaucovid
+![Android CI](https://github.com/fiqryq/Pantaucovid/workflows/Android%20CI/badge.svg)
+![Build Status](https://dev.azure.com/fiqrychoerudin/Pantaucovid/_apis/build/status/fiqryq.Pantaucovid?branchName=master)
+![Build Status](https://travis-ci.com/fiqryq/Pantaucovid.svg?branch=master)
 
-# Download Demo App
-- http://pantaucovid.fiqrychoerudin.space/
+Information about Covid 19.
 
-# About This Project
-Information about Covid 19
-
-# Screenshoot Apps (Development-Mode)
+## Screenshoot Apps (Development-Mode)
 <span align="center"><img width="200px" height="360px" src="docs/images/ss_apps.jpg"></span>
 <span align="center"><img width="200px" height="360px" src="docs/images/ss_news.png"></span>
 <span align="center"><img width="200px" height="360px" src="docs/images/ss_info.png"></span>
 <span align="center"><img width="200px" height="360px" src="docs/images/ss_contributor.png"></span>
 
-# How to contribute
 ## Doing task
-- Find TODO list on issue
-- Pickup Task with label "all ready pickup"
+- [] Find TODO list on issue
+- [] Pickup Task with label "all ready pickup"
+
+## Tech 👨‍💻
+- [Retrofit](https://square.github.io/retrofit/) - Retrofit
+- [hdodenhof](https://github.com/hdodenhof/CircleImageView) - hdodenhof
+- [okHttp](https://square.github.io/okhttp/) - okHttp
+- [frogo recycler view](https://github.com/amirisback/frogo-recycler-view) - frogo recycler view
+- [Rx Java](https://github.com/ReactiveX/RxJava) - Rx Java
 
 ## Completed task
-- Change the label already pick up to be ready to review
-- Waiting Pull owner for merge request
-- Finish
+- [x] Change the label already pick up to be ready to review
+- [x] Waiting Pull owner for merge request
+- [x] Finish
 
-# Colaborator
+## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
 
 - Mail To fiqrychoerudin48@gmail.com
 - Subject : Github _ [Github-Username-Account] _ [Language] _ [Repository-Name]
 - Example : Github_fiqryq_java_Pantau-Covid19
 
-Name Of Contribute
-- Fiqry Choerudin
-- Muhammad Faisal Amir
-- Jeiv Septian R
-- Faisal Ridwan
-- Davin Alfarizky Putra Basudewa
-- Tengku Belmiro Ramadhani
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center">
+    <a href="https://github.com/fiqryq"><img src="https://avatars0.githubusercontent.com/u/25787603?s=460&u=749bf34a4809d0a66eb84477437970e75e76ba2a&v=4" width="100px;" alt=""/> 
+    <br /><sub><b>Fiqry Choerudin</b></sub></a>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 Waiting for your contribute
 
-# Attention !!!
+## Attention !!!
 Please enjoy and don't forget fork and give a star
 - Don't Forget Follow My Github Account
 - If you like this library, please help me / you can donate to buy patreon services
