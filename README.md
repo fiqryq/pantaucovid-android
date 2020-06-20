@@ -12,8 +12,8 @@ Information about Covid 19.
 <span align="center"><img width="200px" height="360px" src="docs/images/ss_contributor.png"></span>
 
 ## Doing task
-- [] Find TODO list on issue
-- [] Pickup Task with label "all ready pickup"
+- Find TODO list on issue
+- Pickup Task with label "all ready pickup"
 
 ## Tech 👨‍💻
 - [Retrofit](https://square.github.io/retrofit/) - Retrofit
@@ -42,8 +42,10 @@ Very open to anyone, I'll write your name under this, please contribute by sendi
 <table>
   <tr>
     <td align="center">
-    <a href="https://github.com/fiqryq"><img src="https://avatars0.githubusercontent.com/u/25787603?s=460&u=749bf34a4809d0a66eb84477437970e75e76ba2a&v=4" width="100px;" alt=""/> 
-    <br /><sub><b>Fiqry Choerudin</b></sub></a>
+    <a href="https://github.com/fiqryq"><img src="https://avatars0.githubusercontent.com/u/25787603?s=460&u=749bf34a4809d0a66eb84477437970e75e76ba2a&v=4" width="100px;" alt=""/> <br /><sub><b>Fiqry Choerudin</b></sub></a>
+    <a href="https://github.com/amirisback"><img src="https://avatars3.githubusercontent.com/u/24654871?s=460&u=75331d873971a2b387962aade2ba544448e2822d&v=4" width="100px;" alt=""/> <br /><sub><b>Muhammad Faisal Amir</b></sub></a>
+    <a href="https://github.com/rootdavinalfa"><img src="https://avatars3.githubusercontent.com/u/13678202?s=460&u=67f5bfbd69928f3c5822374bce6ffabb252634a5&v=4" width="100px;" alt=""/> <br /><sub><b>Davin Alfarizky Putra Basudewa</b></sub></a>
+    <a href="https://github.com/jeivseptian"><img src="https://avatars0.githubusercontent.com/u/48686850?s=460&u=bf7680070fca01cc0eef7c1a441f2dd99a440e57&v=4" width="100px;" alt=""/> <br /><sub><b>Jeiv Septian</b></sub></a>
   </tr>
 </table>
 
