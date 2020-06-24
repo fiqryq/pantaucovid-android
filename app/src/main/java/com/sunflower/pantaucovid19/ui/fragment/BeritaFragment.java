@@ -19,8 +19,8 @@ import com.frogobox.frogonewsapi.data.model.Article;
 import com.frogobox.frogonewsapi.data.response.ArticleResponse;
 import com.frogobox.frogonewsapi.util.NewsConstant;
 import com.frogobox.frogonewsapi.util.NewsUrl;
-import com.frogobox.recycler.FrogoRecyclerView;
 import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback;
+import com.frogobox.recycler.widget.FrogoRecyclerView;
 import com.sunflower.pantaucovid19.R;
 import com.sunflower.pantaucovid19.base.BaseFragment;
 import com.sunflower.pantaucovid19.source.DataRepository;
@@ -57,26 +57,31 @@ public class BeritaFragment extends BaseFragment {
         frogoRecyclerView = view.findViewById(R.id.rv_news_category);
         progressBar = view.findViewById(R.id.progress_view);
         swipe2refresh = view.findViewById(R.id.refreshNews);
-        getTopHeadLine(frogoRecyclerView, progressBar);
+        getEverythings(frogoRecyclerView, progressBar);
         swipeAction();
     }
 
     private void swipeAction() {
         swipe2refresh.setOnRefreshListener(() -> {
-            getTopHeadLine(frogoRecyclerView, progressBar);
+            getEverythings(frogoRecyclerView, progressBar);
             swipe2refresh.setRefreshing(false);
         });
         swipe2refresh.setColorSchemeResources(R.color.colorPrimary);
     }
 
-    private void getTopHeadLine(FrogoRecyclerView frogoRecyclerView, ProgressBar progressBar) {
+    private void getEverythings(FrogoRecyclerView frogoRecyclerView, ProgressBar progressBar) {
         DataRepository dataRepository = new DataRepository(getContext());
-        dataRepository.getTopHeadline(
+        dataRepository.getEverythings(
                 NewsUrl.NEWS_API_KEY,
-                "Virus Corona",
+                "Covid 19",
+                null,
+                null,
+                null,
+                null,
                 null,
                 null,
                 NewsConstant.COUNTRY_ID,
+                null,
                 new GetRemoteCallback<ArticleResponse>() {
                     @Override
                     public void onSuccess(ArticleResponse data) {

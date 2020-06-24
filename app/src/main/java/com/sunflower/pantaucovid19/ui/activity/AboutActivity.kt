@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sunflower.pantaucovid19.R
 import com.sunflower.pantaucovid19.base.BaseActivity
 import com.sunflower.pantaucovid19.source.model.Contributors
-import com.sunflower.pantaucovid19.ui.adapter.InfoAdapter
+import com.sunflower.pantaucovid19.ui.adapter.AboutAdapter
 import com.sunflower.pantaucovid19.utils.ReadAssetJSON
 import org.json.JSONException
 import org.json.JSONObject
@@ -40,7 +40,7 @@ class AboutActivity : BaseActivity() {
                 val pict = x.getString("pict_url")
                 data.add(Contributors(name, github, pict))
             }
-            val adapter = InfoAdapter(data)
+            val adapter = AboutAdapter(data)
             val linearLayoutManager = LinearLayoutManager(this)
             listContributor!!.layoutManager = linearLayoutManager
             listContributor!!.adapter = adapter

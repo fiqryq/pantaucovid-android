@@ -21,7 +21,7 @@ import com.sunflower.pantaucovid19.utils.FuncHelper.Func.getGithubUrl
 import kotlinx.android.synthetic.main.list_contributor.view.*
 
 
-class InfoAdapter(contribList: ArrayList<Contributors>) : RecyclerView.Adapter<InfoAdapter.ViewHolder>() {
+class AboutAdapter(contribList: ArrayList<Contributors>) : RecyclerView.Adapter<AboutAdapter.ViewHolder>() {
     val conList = contribList
     var context: Context? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
