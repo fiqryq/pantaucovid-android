@@ -134,8 +134,7 @@ class LocationTrack(context : Context) : LocationListener {
         }
     }
 
-
-    override fun onLocationChanged(location: Location?) {
+    override fun onLocationChanged(location: Location) {
 
     }
 
@@ -143,11 +142,11 @@ class LocationTrack(context : Context) : LocationListener {
 
     }
 
-    override fun onProviderEnabled(provider: String?) {
+    override fun onProviderEnabled(provider: String) {
 
     }
 
-    override fun onProviderDisabled(provider: String?) {
+    override fun onProviderDisabled(provider: String) {
 
     }
 

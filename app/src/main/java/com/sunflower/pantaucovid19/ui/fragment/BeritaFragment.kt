@@ -1,150 +1,121 @@
-package com.sunflower.pantaucovid19.ui.fragment;
+package com.sunflower.pantaucovid19.ui.fragment
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.bumptech.glide.Glide;
-import com.frogobox.frogonewsapi.data.model.Article;
-import com.frogobox.frogonewsapi.data.response.ArticleResponse;
-import com.frogobox.frogonewsapi.util.NewsConstant;
-import com.frogobox.frogonewsapi.util.NewsUrl;
-import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback;
-import com.frogobox.recycler.widget.FrogoRecyclerView;
-import com.sunflower.pantaucovid19.R;
-import com.sunflower.pantaucovid19.base.BaseFragment;
-import com.sunflower.pantaucovid19.source.DataRepository;
-import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback;
-import com.sunflower.pantaucovid19.ui.activity.WebViewActivity;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-import java.util.Objects;
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.frogobox.frogonewsapi.data.model.Article
+import com.frogobox.frogonewsapi.data.response.ArticleResponse
+import com.frogobox.frogonewsapi.util.NewsConstant.COUNTRY_ID
+import com.frogobox.frogonewsapi.util.NewsUrl.NEWS_API_KEY
+import com.frogobox.recycler.core.IFrogoViewAdapter
+import com.frogobox.recycler.widget.FrogoRecyclerView
+import com.sunflower.pantaucovid19.R
+import com.sunflower.pantaucovid19.base.BaseFragment
+import com.sunflower.pantaucovid19.source.DataRepository
+import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback
+import com.sunflower.pantaucovid19.ui.activity.WebViewActivity
+import kotlinx.android.synthetic.main.fragment_berita.*
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple [Fragment] subclass.
  */
-public class BeritaFragment extends BaseFragment {
-    private SwipeRefreshLayout swipe2refresh;
-    private ProgressBar progressBar;
-    private FrogoRecyclerView frogoRecyclerView;
+class BeritaFragment : BaseFragment() {
 
-    public BeritaFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_berita, container, false);
+        return inflater.inflate(R.layout.fragment_berita, container, false)
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        frogoRecyclerView = view.findViewById(R.id.rv_news_category);
-        progressBar = view.findViewById(R.id.progress_view);
-        swipe2refresh = view.findViewById(R.id.refreshNews);
-        getEverythings(frogoRecyclerView, progressBar);
-        swipeAction();
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getEverythings(rv_news_category, progress_view)
+        swipeAction()
     }
 
-    private void swipeAction() {
-        swipe2refresh.setOnRefreshListener(() -> {
-            getEverythings(frogoRecyclerView, progressBar);
-            swipe2refresh.setRefreshing(false);
-        });
-        swipe2refresh.setColorSchemeResources(R.color.colorPrimary);
+    private fun swipeAction() {
+        refreshNews.setOnRefreshListener {
+            getEverythings(rv_news_category, progress_view)
+            refreshNews!!.isRefreshing = false
+        }
+        refreshNews.setColorSchemeResources(R.color.colorPrimary)
     }
 
-    private void getEverythings(FrogoRecyclerView frogoRecyclerView, ProgressBar progressBar) {
-        DataRepository dataRepository = new DataRepository(getContext());
+    private fun getEverythings(frogoRecyclerView: FrogoRecyclerView, progressBar: ProgressBar) {
+        val dataRepository = DataRepository(context)
         dataRepository.getEverythings(
-                NewsUrl.NEWS_API_KEY,
-                "Covid 19",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                NewsConstant.COUNTRY_ID,
-                null,
-                new GetRemoteCallback<ArticleResponse>() {
-                    @Override
-                    public void onSuccess(ArticleResponse data) {
-                        setupRecyclerView(frogoRecyclerView, data.getArticles());
-                    }
+            NEWS_API_KEY,
+            "Covid 19",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            COUNTRY_ID,
+            null,
+            object : GetRemoteCallback<ArticleResponse> {
+                override fun onSuccess(data: ArticleResponse) {
+                    data.articles?.let { setupRecyclerView(frogoRecyclerView, it) }
+                }
 
-                    @Override
-                    public void onFailed(String errorMessage) {
-                        showToastLong(errorMessage);
-                    }
+                override fun onFailed(errorMessage: String) {
+                    showToastLong(errorMessage)
+                }
 
-                    @Override
-                    public void onShowProgress() {
-                        progressBar.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onHideProgress() {
-                        progressBar.setVisibility(View.GONE);
+                override fun onShowProgress() {
+                    mActivity.runOnUiThread {
+                        progressBar.visibility = View.VISIBLE
                     }
                 }
-        );
+
+                override fun onHideProgress() {
+                    mActivity.runOnUiThread {
+                        progressBar.visibility = View.GONE
+                    }
+                }
+            }
+        )
     }
 
-    private void setupRecyclerView(FrogoRecyclerView frogoRecyclerView, List<Article> articles) {
-
-        FrogoViewAdapterCallback frogoViewAdapterCallback = new FrogoViewAdapterCallback<Article>() {
-            @Override
-            public void setupInitComponent(@NotNull View view, Article article) {
-                TextView tvTitle = view.findViewById(R.id.tv_title);
-                TextView tvPublishdDate = view.findViewById(R.id.tv_published);
-                TextView tvDescription = view.findViewById(R.id.tv_description);
-                ImageView ivUrl = view.findViewById(R.id.iv_url);
-
-                tvTitle.setText(article.getTitle());
-                tvPublishdDate.setText(article.getPublishedAt());
-                tvDescription.setText(article.getDescription());
-                Glide.with(view.getContext()).load(article.getUrlToImage()).into(ivUrl);
+    private fun setupRecyclerView(frogoRecyclerView: FrogoRecyclerView, articles: List<Article>) {
+        val frogoViewAdapterCallback = object : IFrogoViewAdapter<Article> {
+            override fun setupInitComponent(view: View, data: Article) {
+                val tvTitle = view.findViewById<TextView>(R.id.tv_title)
+                val tvPublishdDate = view.findViewById<TextView>(R.id.tv_published)
+                val tvDescription = view.findViewById<TextView>(R.id.tv_description)
+                val ivUrl = view.findViewById<ImageView>(R.id.iv_url)
+                tvTitle.text = data.title
+                tvPublishdDate.text = data.publishedAt
+                tvDescription.text = data.description
+                Glide.with(view.context).load(data.urlToImage).into(ivUrl)
             }
 
-            @Override
-            public void onItemLongClicked(Article article) {
-                showToastShort(article.getTitle());
+            override fun onItemLongClicked(data: Article) {
+                showToastShort(data.title)
             }
 
-            @Override
-            public void onItemClicked(Article article) {
-                showToastShort(article.getTitle());
-                Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra("url", article.getUrl());
-                Objects.requireNonNull(getActivity()).startActivity(intent);
+            override fun onItemClicked(data: Article) {
+                showToastShort(data.title)
+                val intent = Intent(activity, WebViewActivity::class.java)
+                intent.putExtra("url", data.url)
+                requireActivity().startActivity(intent)
             }
-        };
-
-        frogoRecyclerView.injector()
-                .addData(articles)
-                .addCustomView(R.layout.list_article_vertical)
-                .addEmptyView(null)
-                .addCallback(frogoViewAdapterCallback)
-                .createLayoutLinearVertical(false)
-                .build();
-
+        }
+        frogoRecyclerView.injector<Article>()
+            .addData(articles)
+            .addCustomView(R.layout.list_article_vertical)
+            .addEmptyView(null)
+            .addCallback(frogoViewAdapterCallback)
+            .createLayoutLinearVertical(false)
+            .build()
     }
-
-
 }

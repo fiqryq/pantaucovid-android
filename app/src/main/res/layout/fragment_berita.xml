@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/frogoRvColorWhite">
+        android:background="@color/frogoColorWhite">
 
         <View
             android:id="@+id/view"
@@ -23,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_30dp"
-            android:layout_marginTop="@dimen/frogo_rv_dimen_60dp"
+            android:layout_marginTop="@dimen/frogo_dimen_60dp"
             android:layout_marginEnd="@dimen/dimen_16dp"
             android:text="Berita Hari Ini"
-            android:textColor="@color/frogoRvColorWhite"
+            android:textColor="@color/frogoColorWhite"
             android:textSize="20sp"
             android:textStyle="bold" />
 

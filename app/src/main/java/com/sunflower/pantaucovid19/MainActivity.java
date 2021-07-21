@@ -14,6 +14,7 @@ import com.sunflower.pantaucovid19.utils.LocationsObject;
 
 public class MainActivity extends BaseActivity {
     private LocationTrack locate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +22,11 @@ public class MainActivity extends BaseActivity {
         ChipNavigationBar bottomnav = findViewById(R.id.navbar);
         setupBottomNav(bottomnav);
         locate = new LocationTrack(this);
-        if (locate.canGetLocation()){
-            Geography geo = new Geography(locate.getLatitude(),locate.getLongitude(),this);
+        if (locate.canGetLocation()) {
+            Geography geo = new Geography(locate.getLatitude(), locate.getLongitude(), this);
             LocationsObject lo = geo.getLocationObject();
-            Toast.makeText(this,"Provinsi: "+lo.getState(),Toast.LENGTH_LONG).show();
-        }else {
+            Toast.makeText(this, "Provinsi: " + lo.getState(), Toast.LENGTH_LONG).show();
+        } else {
             locate.showSettingsAlert();
         }
     }
