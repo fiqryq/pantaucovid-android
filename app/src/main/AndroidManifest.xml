@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sunflower.pantaucovid19">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +25,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sunflower.pantaucovid19.ui.activity.WebViewActivity" />
         </activity>
-        <activity android:name=".ui.activity.RumahSakitRujukanActivity"/>
+        <activity android:name=".ui.activity.RumahSakitRujukanActivity" />
         <activity
             android:name=".ui.activity.AboutActivity"
             android:label="Tentang Aplikasi"
@@ -34,7 +34,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sunflower.pantaucovid19.ui.activity.AboutActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

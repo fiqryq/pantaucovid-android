@@ -13,6 +13,7 @@ import com.frogobox.frogonewsapi.data.model.Article
 import com.frogobox.frogonewsapi.data.response.ArticleResponse
 import com.frogobox.frogonewsapi.util.NewsConstant.COUNTRY_ID
 import com.frogobox.frogonewsapi.util.NewsUrl.NEWS_API_KEY
+import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoViewAdapter
 import com.frogobox.recycler.widget.FrogoRecyclerView
 import com.sunflower.pantaucovid19.R
@@ -88,7 +89,12 @@ class BeritaFragment : BaseFragment() {
 
     private fun setupRecyclerView(frogoRecyclerView: FrogoRecyclerView, articles: List<Article>) {
         val frogoViewAdapterCallback = object : IFrogoViewAdapter<Article> {
-            override fun setupInitComponent(view: View, data: Article) {
+            override fun setupInitComponent(
+                view: View,
+                data: Article,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<Article>
+            ) {
                 val tvTitle = view.findViewById<TextView>(R.id.tv_title)
                 val tvPublishdDate = view.findViewById<TextView>(R.id.tv_published)
                 val tvDescription = view.findViewById<TextView>(R.id.tv_description)
@@ -99,11 +105,21 @@ class BeritaFragment : BaseFragment() {
                 Glide.with(view.context).load(data.urlToImage).into(ivUrl)
             }
 
-            override fun onItemLongClicked(data: Article) {
+            override fun onItemLongClicked(
+                view: View,
+                data: Article,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<Article>
+            ) {
                 showToastShort(data.title)
             }
 
-            override fun onItemClicked(data: Article) {
+            override fun onItemClicked(
+                view: View,
+                data: Article,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<Article>
+            ) {
                 showToastShort(data.title)
                 val intent = Intent(activity, WebViewActivity::class.java)
                 intent.putExtra("url", data.url)
