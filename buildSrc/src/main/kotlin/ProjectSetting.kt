@@ -73,12 +73,5 @@ object ProjectSetting {
     // Declaration admob id for debug
     const val DEBUG_ADMOB_APP_ID = "ca-app-pub-3940256099942544~3347511713"
 
-    // Base URL end with "/"
-    const val SERVER_NAME = "https://amirisback.github.io"
-    private const val REPOSITORY_SERVER_NAME = "suncode-remote-data-source"
-    private const val BASE_URL_ADMOB_SERVER = "$SERVER_NAME/$REPOSITORY_SERVER_NAME/src/main/api/v1/app"
-    val URL_ADMOB_SERVER = "$BASE_URL_ADMOB_SERVER/$APP_PLAY_CONSOLE/$NAME_APK/"
-    const val JSON_MONETIZE_ADS = "monetize-apps.json"
-    const val JSON_MUSIC = "music.json"
 
 }
