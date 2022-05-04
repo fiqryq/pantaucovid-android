@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.EmergencyNumberActivity"></activity>
+        <activity android:name=".ui.activity.EmergencyNumberActivity" />
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:label="Baca Berita"
@@ -45,6 +45,12 @@
         </activity>
 
         <receiver android:name=".utils.ReminderBroadcast" />
+
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+
     </application>
 
 </manifest>

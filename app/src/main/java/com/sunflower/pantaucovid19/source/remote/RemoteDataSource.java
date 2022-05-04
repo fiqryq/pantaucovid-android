@@ -2,9 +2,9 @@ package com.sunflower.pantaucovid19.source.remote;
 
 import android.content.Context;
 
-import com.frogobox.frogonewsapi.data.response.ArticleResponse;
-import com.frogobox.frogonewsapi.data.response.SourceResponse;
-import com.frogobox.frogonewsapi.util.NewsUrl;
+import com.frogobox.coreapi.news.NewsUrl;
+import com.frogobox.coreapi.news.response.ArticleResponse;
+import com.frogobox.coreapi.news.response.SourceResponse;
 import com.sunflower.pantaucovid19.source.DataSource;
 import com.sunflower.pantaucovid19.source.model.Negara;
 import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
@@ -81,7 +81,7 @@ public class RemoteDataSource implements DataSource {
     @Override
     public void getTopHeadline(String apiKey, String q, String sources, String category, String country, GetRemoteCallback<ArticleResponse> callback) {
         callback.onShowProgress();
-        Call<ArticleResponse> call = ApiService.getApiClient(NewsUrl.NEWS_BASE_URL, context).create(Api.class).getTopHeadline(apiKey, q, sources, category, country);
+        Call<ArticleResponse> call = ApiService.getApiClient(NewsUrl.BASE_URL, context).create(Api.class).getTopHeadline(apiKey, q, sources, category, country);
         call.enqueue(new Callback<ArticleResponse>() {
             @Override
             public void onResponse(Call<ArticleResponse> call, Response<ArticleResponse> response) {
@@ -111,7 +111,7 @@ public class RemoteDataSource implements DataSource {
                                String sortBy,
                                GetRemoteCallback<ArticleResponse> callback) {
         callback.onShowProgress();
-        Call<ArticleResponse> call = ApiService.getApiClient(NewsUrl.NEWS_BASE_URL, context)
+        Call<ArticleResponse> call = ApiService.getApiClient(NewsUrl.BASE_URL, context)
                 .create(Api.class)
                 .getEverythings(
                         apiKey,
@@ -143,8 +143,8 @@ public class RemoteDataSource implements DataSource {
     @Override
     public void getSources(String apiKey, String language, String country, String category, GetRemoteCallback<SourceResponse> callback) {
         callback.onShowProgress();
-        Call<SourceResponse> call = ApiService.getApiClient(NewsUrl.NEWS_BASE_URL, context).create(Api.class).getSources(apiKey, language, country, category);
-        call.enqueue(new Callback<SourceResponse>() {
+        Call<SourceResponse> call = ApiService.getApiClient(NewsUrl.BASE_URL, context).create(Api.class).getSources(apiKey, language, country, category);
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<SourceResponse> call, Response<SourceResponse> response) {
                 if (response.isSuccessful()) {

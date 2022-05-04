@@ -1,13 +1,13 @@
-package com.sunflower.pantaucovid19.base;
+package com.sunflower.pantaucovid19.base
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import com.frogobox.sdk.view.FrogoActivity
 
 /**
  * Created by Faisal Amir
@@ -25,37 +25,36 @@ import androidx.fragment.app.Fragment;
  * FrogoBox Software Industries
  * com.sunflower.pantaucovid19
  */
-public class BaseActivity extends AppCompatActivity {
+abstract class BaseActivity<VB : ViewBinding> : FrogoActivity<VB>() {
 
-    protected AppCompatActivity mActivity;
+    protected var mActivity: AppCompatActivity? = null
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mActivity = this;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mActivity = this
     }
 
-    protected void showToastShort(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    fun showToastShort(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    protected void showToastLong(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    fun showToastLong(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    protected void setupFragment(Fragment fragment, int layout) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(layout, fragment)
-                .commit();
+    protected fun setupFragment(fragment: Fragment?, layout: Int) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(layout, fragment!!)
+            .commit()
     }
 
-    protected void showingProgress(ProgressBar progressBar) {
-        progressBar.setVisibility(View.VISIBLE);
+    fun showingProgress(progressBar: ProgressBar) {
+        progressBar.visibility = View.VISIBLE
     }
 
-    protected void hidingProgress(ProgressBar progressBar) {
-        progressBar.setVisibility(View.GONE);
+    fun hidingProgress(progressBar: ProgressBar) {
+        progressBar.visibility = View.GONE
     }
 
 }

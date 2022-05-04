@@ -12,7 +12,6 @@ import android.os.Build
 import androidx.core.content.PermissionChecker
 import androidx.core.content.PermissionChecker.checkSelfPermission
 
-
 class Permissions(context: Context) {
     var mContext = context
     fun permissionsToRequest(wantedPermissions: ArrayList<String>): ArrayList<String>? {
@@ -27,7 +26,7 @@ class Permissions(context: Context) {
 
     private fun hasPermission(permission: String): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkSelfPermission(mContext,permission) == PermissionChecker.PERMISSION_GRANTED
+            checkSelfPermission(mContext, permission) == PermissionChecker.PERMISSION_GRANTED
         } else true
     }
 }

@@ -2,14 +2,23 @@ package com.sunflower.pantaucovid19.ui.activity;
 
 import android.os.Bundle;
 
-import com.sunflower.pantaucovid19.R;
-import com.sunflower.pantaucovid19.base.BaseActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-public class RumahSakitRujukanActivity extends BaseActivity {
+import com.sunflower.pantaucovid19.base.BaseActivity;
+import com.sunflower.pantaucovid19.databinding.ActivityRumahSakitRujukanBinding;
+
+public class RumahSakitRujukanActivity extends BaseActivity<ActivityRumahSakitRujukanBinding> {
+
+    @NonNull
+    @Override
+    public ActivityRumahSakitRujukanBinding setupViewBinding() {
+        return ActivityRumahSakitRujukanBinding.inflate(getLayoutInflater());
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rumah_sakit_rujukan);
+    public void setupOnCreate(@Nullable Bundle bundle) {
+
     }
+
 }

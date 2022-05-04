@@ -8,49 +8,54 @@
 
 package com.sunflower.pantaucovid19.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.sunflower.pantaucovid19.R
 import com.sunflower.pantaucovid19.base.BaseActivity
+import com.sunflower.pantaucovid19.databinding.ActivityWebviewBinding
 
-class WebViewActivity : BaseActivity() {
-    var newsURL = ""
-    private var webView: WebView? = null
-    @SuppressLint("SetJavaScriptEnabled")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_webview)
-        initialize()
+class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
+
+    private var newsURL = ""
+
+    override fun setupViewBinding(): ActivityWebviewBinding {
+        return ActivityWebviewBinding.inflate(layoutInflater)
+    }
+
+    override fun setupOnCreate(savedInstanceState: Bundle?) {
+
         val intent = intent
         if (intent.getStringExtra("url") != null) {
             newsURL = intent.getStringExtra("url")!!
             //intent.removeExtra("id_anim");
         }
-        webView?.settings?.domStorageEnabled=true
-        webView?.settings?.javaScriptEnabled = true
-        webView?.settings?.loadWithOverviewMode = true
-        webView?.settings?.useWideViewPort = true
-        webView?.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        webView?.webViewClient = object : WebViewClient() {
 
-            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
-                return true
-            }
+        binding.actWebView.apply {
+            settings.apply {
+                domStorageEnabled = true
+                javaScriptEnabled = true
+                loadWithOverviewMode = true
+                useWideViewPort = true
 
-            override fun onPageFinished(view: WebView, url: String) {
-                super.onPageFinished(view, url)
-                Log.i("URL FINISH:", url)
             }
+            setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            webViewClient = object : WebViewClient() {
+
+                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                    view.loadUrl(url)
+                    return true
+                }
+
+                override fun onPageFinished(view: WebView, url: String) {
+                    super.onPageFinished(view, url)
+                    Log.i("URL FINISH:", url)
+                }
+            }
+            loadUrl(newsURL)
         }
-        webView?.loadUrl(newsURL)
+
     }
 
-    private fun initialize(){
-        webView = findViewById(R.id.actWebView)
-    }
 }

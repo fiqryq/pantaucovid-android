@@ -14,8 +14,8 @@ import java.nio.charset.Charset
 
 class ReadAssetJSON {
 
-    fun getJsonAssets(context : Context,filename :String) : String?{
-        val jsonString : String
+    fun getJsonAssets(context: Context, filename: String): String? {
+        val jsonString: String
         try {
             val `is`: InputStream = context.assets.open(filename)
 
@@ -24,10 +24,11 @@ class ReadAssetJSON {
             `is`.read(buffer)
             `is`.close()
             jsonString = String(buffer, Charset.forName("UTF-8"))
-        }catch (e : IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
             return null
         }
         return jsonString
     }
+
 }

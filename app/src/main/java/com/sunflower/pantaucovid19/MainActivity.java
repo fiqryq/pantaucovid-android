@@ -3,8 +3,12 @@ package com.sunflower.pantaucovid19;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.sunflower.pantaucovid19.base.BaseActivity;
+import com.sunflower.pantaucovid19.databinding.ActivityMainBinding;
 import com.sunflower.pantaucovid19.ui.fragment.BeritaFragment;
 import com.sunflower.pantaucovid19.ui.fragment.HomeFragment;
 import com.sunflower.pantaucovid19.ui.fragment.InfoFragment;
@@ -12,15 +16,19 @@ import com.sunflower.pantaucovid19.utils.Geography;
 import com.sunflower.pantaucovid19.utils.LocationTrack;
 import com.sunflower.pantaucovid19.utils.LocationsObject;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
+
     private LocationTrack locate;
 
+    @NonNull
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ChipNavigationBar bottomnav = findViewById(R.id.navbar);
-        setupBottomNav(bottomnav);
+    public ActivityMainBinding setupViewBinding() {
+        return ActivityMainBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
+    public void setupOnCreate(@Nullable Bundle bundle) {
+        setupBottomNav(getBinding().navbar);
         locate = new LocationTrack(this);
         if (locate.canGetLocation()) {
             Geography geo = new Geography(locate.getLatitude(), locate.getLongitude(), this);
@@ -54,4 +62,5 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         locate.stopListener();
     }
+
 }

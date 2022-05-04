@@ -60,8 +60,8 @@ public class FuncHelper {
             return sdf.format(today);
         }
 
-        public static String getGithubUrl(String username){
-            return "https://github.com/"+username;
+        public static String getGithubUrl(String username) {
+            return "https://github.com/" + username;
         }
 
     }

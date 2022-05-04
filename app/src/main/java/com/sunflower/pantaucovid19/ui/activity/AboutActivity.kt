@@ -8,23 +8,31 @@
 
 package com.sunflower.pantaucovid19.ui.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.sunflower.pantaucovid19.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
+import com.frogobox.recycler.core.IFrogoBindingAdapter
+import com.frogobox.recycler.ext.injectorBinding
+import com.frogobox.sdk.ext.glideLoad
 import com.sunflower.pantaucovid19.base.BaseActivity
+import com.sunflower.pantaucovid19.databinding.ActivityAboutBinding
+import com.sunflower.pantaucovid19.databinding.ListContributorBinding
 import com.sunflower.pantaucovid19.source.model.Contributors
-import com.sunflower.pantaucovid19.ui.adapter.AboutAdapter
+import com.sunflower.pantaucovid19.utils.FuncHelper
 import com.sunflower.pantaucovid19.utils.ReadAssetJSON
 import org.json.JSONException
 import org.json.JSONObject
 
-class AboutActivity : BaseActivity() {
-    var listContributor: RecyclerView? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
-        listContributor = findViewById(R.id.infoContributorList)
+class AboutActivity : BaseActivity<ActivityAboutBinding>() {
+
+    override fun setupViewBinding(): ActivityAboutBinding {
+        return ActivityAboutBinding.inflate(layoutInflater)
+    }
+
+    override fun setupOnCreate(savedInstanceState: Bundle?) {
         getProfileData()
     }
 
@@ -40,14 +48,60 @@ class AboutActivity : BaseActivity() {
                 val pict = x.getString("pict_url")
                 data.add(Contributors(name, github, pict))
             }
-            val adapter = AboutAdapter(data)
-            val linearLayoutManager = LinearLayoutManager(this)
-            listContributor!!.layoutManager = linearLayoutManager
-            listContributor!!.adapter = adapter
+
+            binding.infoContributorList.injectorBinding<Contributors, ListContributorBinding>()
+                .addData(data)
+                .addCallback(object : IFrogoBindingAdapter<Contributors, ListContributorBinding> {
+                    override fun onItemClicked(
+                        binding: ListContributorBinding,
+                        data: Contributors,
+                        position: Int,
+                        notifyListener: FrogoRecyclerNotifyListener<Contributors>
+                    ) {
+                        val i = Intent(Intent.ACTION_VIEW)
+                        val url = FuncHelper.Func.getGithubUrl(data.githubURL)
+                        i.data = Uri.parse(url)
+                        println(url)
+                        startActivity(i)
+                    }
+
+                    override fun onItemLongClicked(
+                        binding: ListContributorBinding,
+                        data: Contributors,
+                        position: Int,
+                        notifyListener: FrogoRecyclerNotifyListener<Contributors>
+                    ) {
+                    }
+
+                    override fun setViewBinding(parent: ViewGroup): ListContributorBinding {
+                        return ListContributorBinding.inflate(
+                            LayoutInflater.from(parent.context),
+                            parent,
+                            false
+                        )
+                    }
+
+                    override fun setupInitComponent(
+                        binding: ListContributorBinding,
+                        data: Contributors,
+                        position: Int,
+                        notifyListener: FrogoRecyclerNotifyListener<Contributors>
+                    ) {
+                        binding.apply {
+                            listInfoName.text = data.name
+                            listInfoGithub.text = data.githubURL
+                            listInfoImage.glideLoad(data.picURL)
+                        }
+                    }
+                })
+                .createLayoutLinearVertical(false)
+                .build()
 
 
         } catch (e: JSONException) {
             e.printStackTrace()
         }
     }
+
+
 }

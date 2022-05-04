@@ -2,12 +2,13 @@ package com.sunflower.pantaucovid19.source.remote;
 
 import android.content.Context;
 
-import com.readystatesoftware.chuck.ChuckInterceptor;
+import com.chuckerteam.chucker.api.ChuckerInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
@@ -16,17 +17,17 @@ public class ApiService {
 
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()
-                .addInterceptor(new ChuckInterceptor(context))
+                .addInterceptor(new ChuckerInterceptor(context))
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl(baseUrl)
-//                .client(client)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
 
-        return retrofit;
     }
 }

@@ -2,8 +2,8 @@ package com.sunflower.pantaucovid19.source;
 
 import android.content.Context;
 
-import com.frogobox.frogonewsapi.data.response.ArticleResponse;
-import com.frogobox.frogonewsapi.data.response.SourceResponse;
+import com.frogobox.coreapi.news.response.ArticleResponse;
+import com.frogobox.coreapi.news.response.SourceResponse;
 import com.sunflower.pantaucovid19.source.model.Negara;
 import com.sunflower.pantaucovid19.source.model.ResponseProvinsi;
 import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback;

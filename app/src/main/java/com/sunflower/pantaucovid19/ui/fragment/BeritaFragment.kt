@@ -9,51 +9,53 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.frogobox.frogonewsapi.data.model.Article
-import com.frogobox.frogonewsapi.data.response.ArticleResponse
-import com.frogobox.frogonewsapi.util.NewsConstant.COUNTRY_ID
-import com.frogobox.frogonewsapi.util.NewsUrl.NEWS_API_KEY
+import com.frogobox.coreapi.news.NewsConstant.COUNTRY_ID
+import com.frogobox.coreapi.news.NewsUrl
+import com.frogobox.coreapi.news.model.Article
+import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoViewAdapter
 import com.frogobox.recycler.widget.FrogoRecyclerView
 import com.sunflower.pantaucovid19.R
 import com.sunflower.pantaucovid19.base.BaseFragment
+import com.sunflower.pantaucovid19.databinding.FragmentBeritaBinding
 import com.sunflower.pantaucovid19.source.DataRepository
 import com.sunflower.pantaucovid19.source.remote.GetRemoteCallback
 import com.sunflower.pantaucovid19.ui.activity.WebViewActivity
-import kotlinx.android.synthetic.main.fragment_berita.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class BeritaFragment : BaseFragment() {
+class BeritaFragment : BaseFragment<FragmentBeritaBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_berita, container, false)
+    override fun setupViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentBeritaBinding {
+        return FragmentBeritaBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getEverythings(rv_news_category, progress_view)
+    override fun setupOnViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        getEverythings(binding.rvNewsCategory, binding.progressView)
         swipeAction()
     }
 
     private fun swipeAction() {
-        refreshNews.setOnRefreshListener {
-            getEverythings(rv_news_category, progress_view)
-            refreshNews!!.isRefreshing = false
+        binding.apply {
+            refreshNews.setOnRefreshListener {
+                getEverythings(binding.rvNewsCategory, binding.progressView)
+                refreshNews.isRefreshing = false
+            }
+            refreshNews.setColorSchemeResources(R.color.colorPrimary)
         }
-        refreshNews.setColorSchemeResources(R.color.colorPrimary)
+
     }
 
     private fun getEverythings(frogoRecyclerView: FrogoRecyclerView, progressBar: ProgressBar) {
         val dataRepository = DataRepository(context)
         dataRepository.getEverythings(
-            NEWS_API_KEY,
+            NewsUrl.API_KEY,
             "Covid 19",
             null,
             null,
@@ -73,13 +75,13 @@ class BeritaFragment : BaseFragment() {
                 }
 
                 override fun onShowProgress() {
-                    mActivity.runOnUiThread {
+                    mActivity?.runOnUiThread {
                         progressBar.visibility = View.VISIBLE
                     }
                 }
 
                 override fun onHideProgress() {
-                    mActivity.runOnUiThread {
+                    mActivity?.runOnUiThread {
                         progressBar.visibility = View.GONE
                     }
                 }
@@ -134,4 +136,5 @@ class BeritaFragment : BaseFragment() {
             .createLayoutLinearVertical(false)
             .build()
     }
+
 }

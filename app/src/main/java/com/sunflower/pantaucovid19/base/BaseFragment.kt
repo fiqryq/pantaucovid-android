@@ -1,10 +1,10 @@
-package com.sunflower.pantaucovid19.base;
+package com.sunflower.pantaucovid19.base
 
-import android.os.Bundle;
-import android.widget.ProgressBar;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import com.frogobox.sdk.view.FrogoFragment
 
 /**
  * Created by Faisal Amir
@@ -22,38 +22,37 @@ import androidx.fragment.app.Fragment;
  * FrogoBox Software Industries
  * com.sunflower.pantaucovid19
  */
-public class BaseFragment extends Fragment {
 
-    protected BaseActivity mActivity;
+abstract class BaseFragment<VB : ViewBinding> : FrogoFragment<VB>() {
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mActivity = (BaseActivity) getActivity();
+    protected var mActivity: BaseActivity<*>? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mActivity = activity as BaseActivity<*>?
     }
 
-
-    protected void showToastShort(String message) {
-        mActivity.showToastShort(message);
+    protected fun showToastShort(message: String?) {
+        mActivity!!.showToastShort(message)
     }
 
-    protected void showToastLong(String message) {
-        mActivity.showToastLong(message);
+    protected fun showToastLong(message: String?) {
+        mActivity!!.showToastLong(message)
     }
 
-    protected void setupFragment(Fragment fragment, int layout) {
-        getChildFragmentManager()
-                .beginTransaction()
-                .replace(layout, fragment)
-                .commit();
+    protected fun setupFragment(fragment: Fragment?, layout: Int) {
+        childFragmentManager
+            .beginTransaction()
+            .replace(layout, fragment!!)
+            .commit()
     }
 
-    protected void showingProgress(ProgressBar progressBar) {
-        mActivity.showingProgress(progressBar);
+    protected fun showingProgress(progressBar: ProgressBar?) {
+        mActivity!!.showingProgress(progressBar!!)
     }
 
-    protected void hidingProgress(ProgressBar progressBar) {
-        mActivity.hidingProgress(progressBar);
+    protected fun hidingProgress(progressBar: ProgressBar?) {
+        mActivity!!.hidingProgress(progressBar!!)
     }
 
 }

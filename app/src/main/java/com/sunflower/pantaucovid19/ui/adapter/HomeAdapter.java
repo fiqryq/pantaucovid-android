@@ -44,10 +44,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView mProvinsi;
-        private TextView mKasusPositif;
-        private TextView mKasusMeninggal;
-        private TextView mKasusSembuh;
+        private final TextView mProvinsi;
+        private final TextView mKasusPositif;
+        private final TextView mKasusMeninggal;
+        private final TextView mKasusSembuh;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

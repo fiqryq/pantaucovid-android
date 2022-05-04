@@ -27,11 +27,10 @@ import androidx.core.app.ActivityCompat.requestPermissions
 import com.sunflower.pantaucovid19.MainActivity
 
 
-class LocationTrack(context : Context) : LocationListener {
+class LocationTrack(context: Context) : LocationListener {
 
     var mContext = context
     var checkGPS = false
-
 
     var checkNetwork = false
 
@@ -41,16 +40,15 @@ class LocationTrack(context : Context) : LocationListener {
     var latitude = 0.0
     var longitude = 0.0
 
-
     private val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 10
-
 
     private val MIN_TIME_BW_UPDATES = 1000 * 60 * 1.toLong()
     var locationManager: LocationManager? = null
 
     var permissions = ArrayList<String>()
     var permissionsToRequest = ArrayList<String>()
-    var perms : Permissions? = null
+    var perms: Permissions? = null
+
     init {
         perms = Permissions(mContext)
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -60,14 +58,16 @@ class LocationTrack(context : Context) : LocationListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (permissionsToRequest.size > 0) {
-                requestPermissions((mContext as MainActivity),permissionsToRequest
-                        .toArray(arrayOfNulls(permissionsToRequest.size)), ALL_PERMISSIONS_RESULT)
+                requestPermissions(
+                    (mContext as MainActivity), permissionsToRequest
+                        .toArray(arrayOfNulls(permissionsToRequest.size)), ALL_PERMISSIONS_RESULT
+                )
             }
-        }else{
+        } else {
             showSettingsAlert()
         }
         val loca = getLocation()
-        if(loca != null){
+        if (loca != null) {
             longitude = loca.longitude
             latitude = loca.latitude
         }
@@ -76,21 +76,29 @@ class LocationTrack(context : Context) : LocationListener {
     fun getLocation(): Location? {
         try {
             locationManager = (mContext as MainActivity)
-                    .getSystemService(LOCATION_SERVICE) as LocationManager?
+                .getSystemService(LOCATION_SERVICE) as LocationManager?
             // get GPS status
             checkGPS = locationManager!!
-                    .isProviderEnabled(LocationManager.GPS_PROVIDER)
+                .isProviderEnabled(LocationManager.GPS_PROVIDER)
             // get network provider status
             checkNetwork = locationManager!!
-                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
             if (!checkGPS && !checkNetwork) {
-                Toast.makeText(mContext, "No Service Provider is available", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "No Service Provider is available", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 canGetLocation = true
 
                 val providers: List<String> = locationManager!!.getProviders(true)
                 var bestLocation: Location? = null
-                if (ActivityCompat.checkSelfPermission(mContext as Activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(
+                        mContext as Activity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        mContext,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
                     return null
                 }
                 for (provider in providers) {
@@ -120,14 +128,23 @@ class LocationTrack(context : Context) : LocationListener {
             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             mContext.startActivity(intent)
         })
-        alertDialog.setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        alertDialog.setNegativeButton(
+            "No",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         alertDialog.show()
     }
 
 
     fun stopListener() {
         if (locationManager != null) {
-            if (ActivityCompat.checkSelfPermission((mContext as Activity), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(
+                    (mContext as Activity),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    mContext,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return
             }
             locationManager!!.removeUpdates(this@LocationTrack)
@@ -150,7 +167,7 @@ class LocationTrack(context : Context) : LocationListener {
 
     }
 
-    companion object{
+    companion object {
         val ALL_PERMISSIONS_RESULT = 1011
     }
 }
