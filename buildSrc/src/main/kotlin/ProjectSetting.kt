@@ -39,9 +39,6 @@ object ProjectSetting {
     // Declaration admob id for release
     const val RELEASE_ADMOB_APP_ID = "ca-app-pub-3940256099942544~3347511713" // Wajib
 
-    // Declaration Speed Games
-    const val PIANO_TILES_SPEED_GAME = 11
-
     // ---------------------------------------------------------------------------------------------
     // Default Setting - Do Not Change
     // ---------------------------------------------------------------------------------------------
