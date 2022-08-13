@@ -1,0 +1,16 @@
+name: 'Pantau Covid'
+description: 'Pantau Covid'
+author: 'Fiqry Choirudin'
+branding:
+  icon: archive
+  color: green
+inputs:
+  myInput:
+    description: 'Input to use'
+    required: false
+    default: 'world'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.myInput }}
